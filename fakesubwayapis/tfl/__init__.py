@@ -8,7 +8,7 @@ class api (fakesubwayapis.fakesubwayapi) :
 
         fakesubwayapis.fakesubwayapi.__init__(self)
 
-        # http://www.tfl.gov.uk/tfl/livetravelnews/departureboards/tube/default.asp?LineCode=bakerloo&StationCode=CHX&BakerlooGo=Go&switchBakerloo=off
+        # http://www.tfl.gov.uk/tfl/livetravelnews/departureboards/default.asp
 
         self.stations = {
 
