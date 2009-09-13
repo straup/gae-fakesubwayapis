@@ -36,6 +36,10 @@ GET http://fakesubwayapis.appspot.com/ukrail/getinfo/ysr
 	</station>
 </rsp>
 
+# Transport For London (aka The Tube)
+
+It's in there but still needs some thinking...
+
 # REQUIREMENTS
 
 http://github.com/straup/gae-APIApp
@@ -43,4 +47,4 @@ http://github.com/straup/gae-APIApp
 # NERD NOTES
 
 It's probably getting about time to think about abstracting the "getinfo"
-code. That's as far as I've gotten though...
+code. That's as far as I've gotten though.
