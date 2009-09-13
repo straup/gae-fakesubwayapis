@@ -12,6 +12,7 @@ class api (fakesubwayapis.fakesubwayapi) :
 
         self.lines = {
             'B' : 'Bakerloo',
+            'C' : 'Central',
             'D' : 'District',
             'H' : 'Hammersmith and City',
             'M' : 'Metropolitain',
@@ -24,7 +25,7 @@ class api (fakesubwayapis.fakesubwayapi) :
         
         self.stations = {
 
-            #
+            # One day, TFL will have a web page per station...
 
             "ACT" : "Acton Town",
             "ALD" : "Aldgate",
