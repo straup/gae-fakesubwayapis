@@ -1,0 +1,31 @@
+Honestly, it what it sounds like.
+
+It currently only supports a single method (getinfo) for subway systems (that I
+know about) with actual web pages for individual stations.
+
+# Societe de Transport de Montreal
+
+GET http://fakesubwayapis.appspot.com/stm/getinfo/m48
+
+<rsp stat="ok">
+	<station code="m48" service="stm">
+		<url>http://www.stm.info/metro/m48.htm</url>
+		<name>Villa-Maria</name>
+	</station>
+</rsp>
+
+# Bay Area Rapid Transit System
+
+GET http://fakesubwayapis.appspot.com/bart/getinfo/sfia
+
+<rsp stat="ok">
+	<station code="sfia" service="bart">
+		<url>http://www.bart.gov/stations/sfia/</url>
+		<name>San Francisco Int'l Airport</name>
+	</station>
+</rsp>
+
+# REQUIREMENTS
+
+http://github.com/straup/gae-APIApp
+
