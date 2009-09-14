@@ -38,7 +38,29 @@ GET http://fakesubwayapis.appspot.com/ukrail/getinfo/ysr
 
 # Transport For London (aka The Tube)
 
-It's in there but still needs some thinking...
+GET http://fakesubwayapis.appspot.com/tfl/getinfo/OLD
+
+<rsp stat="ok">
+	<station code="OLD" service="tfl">
+		<url>http://www.tfl.gov.uk/tfl/livetravelnews/departureboards/tube/default.asp?LineCode=northern&StationCode=OLD</url>
+		<name>Old Street</name>
+	</station>
+</rsp>
+
+GET http://fakesubwayapis.appspot.com/tfl/getinfo/KXX-N
+
+<rsp stat="ok">
+	<station code="KXX-N" service="tfl">
+		<url>http://www.tfl.gov.uk/tfl/livetravelnews/departureboards/tube/default.asp?LineCode=northern&StationCode=KXX</url>
+		<name>King's Cross St. Pancras</name>
+	</station>
+</rsp>
+
+Note the "-TUBELINE_CODE" bit. This isn't necessary unless you want a URL for
+that Tube station. This is a quirk/feature of the TFL website.
+
+The codes are the first letter of the line name with the exception of the Circle
+line whose code is "O".
 
 # REQUIREMENTS
 
