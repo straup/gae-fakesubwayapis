@@ -517,6 +517,8 @@ class getinfo (api) :
         name = self.stations[code]['name']
         line = self.stations[code]['line']
         line = self.lines[line]
+
+        # FIX ME: code needs to be checked to see if it's got a prefix/suffix...
         
         url = "http://www.tfl.gov.uk/tfl/livetravelnews/departureboards/tube/default.asp?LineCode=%s&StationCode=%s" % (line, code)
         
