@@ -3,6 +3,12 @@
 
 import fakesubwayapis
 
+class docs (fakesubwayapis.fakesubwayapidocs) :
+
+    def get (self) :
+        self.display("stm.html")
+        return
+
 class api (fakesubwayapis.fakesubwayapi) :
 
     def __init__ (self) :

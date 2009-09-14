@@ -1,5 +1,11 @@
 import fakesubwayapis
 
+class docs (fakesubwayapis.fakesubwayapidocs) :
+
+    def get (self) :
+        self.display("bart.html")
+        return
+    
 class api (fakesubwayapis.fakesubwayapi) :
 
     def __init__ (self)  :
