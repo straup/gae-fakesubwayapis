@@ -26,8 +26,11 @@ class fakesubwayapidocs (webapp.RequestHandler) :
 
         for code in codes :
 
-            name = self.stations[code]
+            if code == '' :
+                continue
 
+            name = self.stations[code]
+            
             # This is a series of badly named kludges but
             # I'm too tired to sort it out right now. At
             # the moment is a special case for TFL but eventually
