@@ -3,18 +3,10 @@
 
 import fakesubwayapis
 
-class docs (fakesubwayapis.fakesubwayapidocs) :
-
-    def get (self) :
-        self.display("stm.html")
-        return
-
-class api (fakesubwayapis.fakesubwayapi) :
+class stm :
 
     def __init__ (self) :
 
-        fakesubwayapis.fakesubwayapi.__init__(self)
-        
         self.stations = {
             "m01" : "Henri-Bourassa",
             "m02" : "Sauvé",
@@ -85,6 +77,22 @@ class api (fakesubwayapis.fakesubwayapi) :
             "m67" : "de la Concorde",
             "m68" : "Montmorency",
             }
+        
+class docs (fakesubwayapis.fakesubwayapidocs, stm) :
+
+    def __init__ (self) :
+        fakesubwayapis.fakesubwayapidocs.__init__(self)
+        stm.__init__(self)
+        
+    def get (self) :
+        self.display("stm.html", {'title' : 'stm', 'stations' : self.stations})
+        return
+
+class api (fakesubwayapis.fakesubwayapi, stm) :
+
+    def __init__ (self) :
+        fakesubwayapis.fakesubwayapi.__init__(self)
+        stm.__init__(self)
         
 class getinfo (api) :
 

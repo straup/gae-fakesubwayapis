@@ -2,18 +2,10 @@
 
 import fakesubwayapis
 
-class docs (fakesubwayapis.fakesubwayapidocs) :
-
-    def get (self) :
-        self.display("ukrail.html")
-        return
-
-class api (fakesubwayapis.fakesubwayapi) :
+class ukrail :
 
     def __init__ (self) :
-
-        fakesubwayapis.fakesubwayapi.__init__(self)
-
+        
         # http://www.nationalrail.co.uk/stations/codes/
         
         self.stations = {
@@ -2558,6 +2550,24 @@ class api (fakesubwayapis.fakesubwayapi) :
             "YSM" : "Ystrad Mynach",
             "YSR" : "Ystrad Rhondda",
             }
+        
+class docs (fakesubwayapis.fakesubwayapidocs, ukrail) :
+
+    def __init__ (self) :
+
+        fakesubwayapis.fakesubwayapidocs.__init__(self)
+        ukrail.__init__(self)
+        
+    def get (self) :
+        self.display("ukrail.html", {'title' : 'ukrail', 'stations' : self.stations})
+        return
+
+class api (fakesubwayapis.fakesubwayapi, ukrail) :
+
+    def __init__ (self) :
+
+        fakesubwayapis.fakesubwayapi.__init__(self)
+        ukrail.__init__(self)
         
 class getinfo (api) :
 

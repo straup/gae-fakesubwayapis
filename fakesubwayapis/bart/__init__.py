@@ -1,17 +1,9 @@
 import fakesubwayapis
 
-class docs (fakesubwayapis.fakesubwayapidocs) :
+class bart :
 
-    def get (self) :
-        self.display("bart.html")
-        return
-    
-class api (fakesubwayapis.fakesubwayapi) :
+    def __init__ (self) :
 
-    def __init__ (self)  :
-
-        fakesubwayapis.fakesubwayapi.__init__(self)
-        
         self.stations = {
             
             "12th" : "12th St. Oakland City Center",
@@ -58,7 +50,26 @@ class api (fakesubwayapis.fakesubwayapi) :
             "wcrk" : "Walnut Creek",
             "woak" : "West Oakland",
             }
+        
+class docs (fakesubwayapis.fakesubwayapidocs, bart) :
+
+    def __init__ (self)  :
+
+        fakesubwayapis.fakesubwayapidocs.__init__(self)        
+        bart.__init__(self)
+
+    def get (self) :
+        
+        self.display("bart.html", {'title' : 'bart', 'stations' : self.stations})
+        return
     
+class api (fakesubwayapis.fakesubwayapi, bart) :
+
+    def __init__ (self)  :
+
+        fakesubwayapis.fakesubwayapi.__init__(self)        
+        bart.__init__(self)
+        
 class getinfo (api) :
 
     def get (self, code) :

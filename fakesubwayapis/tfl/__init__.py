@@ -1,16 +1,8 @@
 import fakesubwayapis
 
-class docs (fakesubwayapis.fakesubwayapidocs) :
-
-    def get (self) :
-        self.display("tfl.html")
-        return
-
-class api (fakesubwayapis.fakesubwayapi) :
+class tfl :
 
     def __init__ (self) :
-
-        fakesubwayapis.fakesubwayapi.__init__(self)
 
         # http://www.tfl.gov.uk/tfl/livetravelnews/departureboards/default.asp
 
@@ -533,7 +525,24 @@ class api (fakesubwayapis.fakesubwayapi) :
             # River Service
             
             }
+        
+class docs (fakesubwayapis.fakesubwayapidocs, tfl) :
 
+    def __init__ (self) :
+        fakesubwayapis.fakesubwayapidocs.__init__(self)
+        tfl.__init__(self)
+        
+    def get (self) :
+        self.display("tfl.html", {'title' : 'tfl', 'stations' : self.stations})
+        return
+
+class api (fakesubwayapis.fakesubwayapi, tfl) :
+
+    def __init__ (self) :
+
+        fakesubwayapis.fakesubwayapi.__init__(self)
+        tfl.__init__(self)
+        
 class getinfo (api) :
 
     def get (self, station_code, line_code) :
