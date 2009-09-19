@@ -17,5 +17,9 @@ skip_files:
 - ^(.*/)?.*\.bak$
 
 handlers:
+
+- url: /css
+  static_dir: css
+
 - url: .*
   script: main.py
