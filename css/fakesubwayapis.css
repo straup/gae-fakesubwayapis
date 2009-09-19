@@ -27,6 +27,16 @@ h2 {
         padding:50px;
 }
 
+.servicelist ul { 
+               font-family:sans-serif;
+}
+
+.servicelist ul li { 
+                  line-height: 25px;
+                     font-weight: 700;
+                     list-style-type:circle;
+                  }
+
 .stations ul { 
                font-family:sans-serif;
                font-size:small;
