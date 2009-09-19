@@ -59,8 +59,10 @@ class docs (fakesubwayapis.fakesubwayapidocs, bart) :
         bart.__init__(self)
 
     def get (self) :
+
+        stations = self.prepare_stations()
         
-        self.display("bart.html", {'title' : 'bart', 'stations' : self.stations})
+        self.display("bart.html", {'title' : 'bart', 'stations' : stations})
         return
     
 class api (fakesubwayapis.fakesubwayapi, bart) :

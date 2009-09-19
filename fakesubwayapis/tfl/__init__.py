@@ -533,7 +533,10 @@ class docs (fakesubwayapis.fakesubwayapidocs, tfl) :
         tfl.__init__(self)
         
     def get (self) :
-        self.display("tfl.html", {'title' : 'tfl', 'stations' : self.stations})
+
+        stations = self.prepare_stations()
+        
+        self.display("tfl.html", {'title' : 'tfl', 'stations' : stations})
         return
 
 class api (fakesubwayapis.fakesubwayapi, tfl) :

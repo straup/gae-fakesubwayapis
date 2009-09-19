@@ -2559,7 +2559,10 @@ class docs (fakesubwayapis.fakesubwayapidocs, ukrail) :
         ukrail.__init__(self)
         
     def get (self) :
-        self.display("ukrail.html", {'title' : 'ukrail', 'stations' : self.stations})
+
+        stations = self.prepare_stations()
+        
+        self.display("ukrail.html", {'title' : 'ukrail', 'stations' : stations})
         return
 
 class api (fakesubwayapis.fakesubwayapi, ukrail) :

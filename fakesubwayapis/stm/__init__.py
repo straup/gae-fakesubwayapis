@@ -85,7 +85,10 @@ class docs (fakesubwayapis.fakesubwayapidocs, stm) :
         stm.__init__(self)
         
     def get (self) :
-        self.display("stm.html", {'title' : 'stm', 'stations' : self.stations})
+
+        stations = self.prepare_stations()
+        
+        self.display("stm.html", {'title' : 'stm', 'stations' : stations})
         return
 
 class api (fakesubwayapis.fakesubwayapi, stm) :
