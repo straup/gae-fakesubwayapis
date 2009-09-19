@@ -1,5 +1,20 @@
 {% include "inc_head.html" %}
 
-<p><a href="http://www.nationalrail.co.uk/">UK National Rail Service</a></p>
+<h2><a href="http://www.nationalrail.co.uk/">UK National Rail Service</a></h2>
+
+<h3>Example</h3>
+
+<pre>
+GET <a href="http://fakesubwayapis.appspot.com/ukrail/getinfo/AGR">http://fakesubwayapis.appspot.com/ukrail/getinfo/AGR</a>
+
+&lt;rsp stat="ok"&gt;
+	&lt;station code="AGR" service="ukrail"&gt;
+		&lt;url&gt;<a href="http://www.nationalrail.co.uk/stations/agr/details.html">http://www.nationalrail.co.uk/stations/agr/details.html</a>&lt;/url&gt;
+		&lt;name&gt;Angel Road&lt;/name&gt;
+	&lt;/station&gt;
+&lt;/rsp&gt;
+</pre>
+
+{% include "inc_stations.html" %}
 
 {% include "inc_foot.html" %}

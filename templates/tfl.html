@@ -1,5 +1,20 @@
 {% include "inc_head.html" %}
 
-<p><a href="http://www.tfl.gov.uk/">Transport For London</a></p>
+<h2><a href="http://www.tfl.gov.uk/">Transport For London</a></h2>
+
+<h3>Example</h3>
+
+GET <a href="http://localhost:8085/tfl/getinfo/BST-B">http://localhost:8085/tfl/getinfo/BST-B</a>
+
+<pre>
+&lt;rsp stat="ok"&gt;
+	&lt;station code="BST-B" service="tfl"&gt;
+		&lt;url&gt;<a href="http://www.tfl.gov.uk/tfl/livetravelnews/departureboards/tube/default.asp?LineCode=bakerloo&StationCode=BST">http://www.tfl.gov.uk/tfl/livetravelnews/departureboards/tube/default.asp?LineCode=bakerloo&StationCode=BST</a>&lt;/url&gt;
+		&lt;name&gt;Baker Street&lt;/name&gt;
+	&lt;/station&gt;
+&lt;/rsp&gt;
+</pre>
+
+{% include "inc_stations_long.html" %}
 
 {% include "inc_foot.html" %}

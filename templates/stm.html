@@ -1,5 +1,20 @@
 {% include "inc_head.html" %}
 
-<p><a href="http://www.stm.info">Société de transport de Montréal</a></p>
+<h2><a href="http://www.stm.info">Société de transport de Montréal</a></h2>
+
+<h3>Example</h3>
+
+<pre>
+GET <a href="http://fakesubwayapis.appspot.com/stm/getinfo/m48">http://fakesubwayapis.appspot.com/stm/getinfo/m48</a>
+
+&lt;rsp stat="ok"&gt;
+	&lt;station code="m48" service="stm"&gt;
+		&lt;url&gt;http://www.stm.info/metro/m48.htm&lt;/url&gt;
+		&lt;name&gt;Villa-Maria&lt;/name&gt;
+	&lt;/station&gt;
+&lt;/rsp&gt;
+</pre>
+
+{% include "inc_stations.html" %}
 
 {% include "inc_foot.html" %}
