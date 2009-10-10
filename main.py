@@ -5,6 +5,7 @@ from google.appengine.ext import webapp
 
 import fakesubwayapis
 import fakesubwayapis.bart
+import fakesubwayapis.mta
 import fakesubwayapis.stm
 import fakesubwayapis.tfl
 import fakesubwayapis.ukrail
@@ -16,6 +17,9 @@ if __name__ == '__main__':
 
     (r'/bart/getinfo/([a-z0-9]+)/?', fakesubwayapis.bart.getinfo),
     (r'/bart/?', fakesubwayapis.bart.docs),    
+
+    (r'/mta/getinfo/([a-z0-9]+)/?', fakesubwayapis.mta.getinfo),
+    (r'/mta/?', fakesubwayapis.mta.docs),    
 
     (r'/stm/getinfo/(m\d{2})/?', fakesubwayapis.stm.getinfo),
     (r'/stm/?', fakesubwayapis.stm.docs),    

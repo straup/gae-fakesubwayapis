@@ -1,17 +1,30 @@
 body { 
+       margin:0px;
+       padding:0px;
+       font-family:serif;
+}
 
+h2 { 
+     font-family:sans-serif;
 }
 
 .example pre { 
                background-color: #ccc;
                padding:25px;
-               max-width:650px;
+               max-width:700px;
                border:1px solid #333;
 }
 
 .footer { 
           text-align:right;
-          margin-top:20px;
+          margin:50px;
+          margin-top:0;
+          font-size:small;
+          font-family:sans-serif;
+}
+
+.main { 
+        padding:50px;
 }
 
 .stations ul { 
