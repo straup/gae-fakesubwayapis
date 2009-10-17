@@ -17,7 +17,7 @@ class fakesubwayapidocs (webapp.RequestHandler) :
         self.display("intro.html")
         return
 
-    def prepare_stations (self) :
+    def prepare_stations (self, compound_ids_only=False) :
 
         prepared = []
 
@@ -38,11 +38,14 @@ class fakesubwayapidocs (webapp.RequestHandler) :
                     line = self.lines[ln]
                     
                     code2 = "%s-%s" % (code, ln)                
-                    name2 = "%s (%s)" % (name, line.capitalize())
+                    name2 = "%s (%s line)" % (name, line.capitalize())
 
                     prepared.append((code2, name2))                    
-            else :
-                prepared.append((code, name))
+
+                if compound_ids_only :
+                    continue
+                
+            prepared.append((code, name))
                 
         return prepared
     
