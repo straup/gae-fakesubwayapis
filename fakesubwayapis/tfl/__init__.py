@@ -360,6 +360,7 @@ class docs (fakesubwayapis.fakesubwayapidocs, tfl) :
         self.display("tfl.html", {'title' : 'tfl', 'stations' : stations})
         return
 
+
 class api (fakesubwayapis.fakesubwayapi, tfl) :
 
     def __init__ (self) :

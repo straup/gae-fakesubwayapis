@@ -29,27 +29,21 @@ class fakesubwayapidocs (webapp.RequestHandler) :
             if code == '' :
                 continue
 
-            name = self.stations[code]
-            
-            # This is a series of badly named kludges but
-            # I'm too tired to sort it out right now. At
-            # the moment is a special case for TFL but eventually
-            # all the other providers will use dicts too.
-            
-            if type(name) == types.DictType :
-
-                line = None
+            name = self.stations[code]['name']
                 
-                if name.has_key('line') and name['line'] != '' :
-                    line = self.lines[name['line']]
+            if self.stations[code].has_key('line') :
 
-                name = name['name']
+                for ln in self.stations[code]['line'] :
 
-                if line: 
-                    name = "%s (%s line)" % (name, line.capitalize())
+                    line = self.lines[ln]
                     
-            prepared.append((code, name))
+                    code2 = "%s-%s" % (code, ln)                
+                    name2 = "%s (%s)" % (name, line.capitalize())
 
+                    prepared.append((code2, name2))                    
+            else :
+                prepared.append((code, name))
+                
         return prepared
     
     def display (self, template_name, template_values={}) :
