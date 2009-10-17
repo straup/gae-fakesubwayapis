@@ -556,8 +556,7 @@ class getinfo (api) :
         out = {
             'code' : code,
             'service' : 'mta',
-            'lat' : self.stations[code]['lat'],
-            'lon' : self.stations[code]['lon'],            
+            'location' : { 'lat' : self.stations[code]['lat'], 'lon' : self.stations[code]['lon'] },            
             'name' :  { '_content' : self.stations[code]['name'] },
             'url' : { '_content' : 'http://www.mta.info/stations/%s/' % code },
             }
