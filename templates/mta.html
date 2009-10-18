@@ -2,10 +2,6 @@
 
 <h2><a href="http://mta.info">New York Metropolitain Transport Association</a></h2>
 
-<p style="font-weight:700;color:red;font-family:sans-serif;">The MTA is included as a proof-of-concept API
-  endpoint. Unfortunately there are not webpages for the individual subways
-  stops yet.</p>
-
 <div class="example">
 <h3>Example</h3>
 
@@ -14,6 +10,7 @@ GET <a href="{{ host|escape }}/mta/getinfo/67">{{ host|escape }}/mta/getinfo/67<
 
 &lt;rsp stat="ok"&gt;
 	&lt;station code="67" service="mta"&gt;
+		&lt;url&gt;<a href="{{ host|escape }}/mta/station/67">{{ host|escape }}/mta/station/67</a>&lt;/url&gt;
 		&lt;location lat="40.722318" lon="-73.997117"/&gt;
 		&lt;name&gt;Spring St&lt;/name&gt;
 	&lt;/station&gt;
