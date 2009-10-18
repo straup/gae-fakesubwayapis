@@ -9,6 +9,7 @@ import fakesubwayapis.mbta
 import fakesubwayapis.mta
 import fakesubwayapis.stm
 import fakesubwayapis.tfl
+import fakesubwayapis.ttc
 import fakesubwayapis.ukrail
 
 if __name__ == '__main__':
@@ -35,6 +36,10 @@ if __name__ == '__main__':
     (r'/tfl/getinfo/(\w+)(?:-(\w))?/?', fakesubwayapis.tfl.getinfo),
     (r'/tfl/station/(\w+)(?:-(\w))?/?', fakesubwayapis.tfl.station),
     (r'/tfl/?', fakesubwayapis.tfl.docs), 
+
+    (r'/ttc/getinfo/(\w+)/?', fakesubwayapis.ttc.getinfo),
+    (r'/ttc/station/(\w+)/?', fakesubwayapis.ttc.station),
+    (r'/ttc/?', fakesubwayapis.ttc.docs), 
 
     (r'/ukrail/getinfo/(\w{3})/?', fakesubwayapis.ukrail.getinfo),
     (r'/ukrail/station/(\w{3})/?', fakesubwayapis.ukrail.station),    

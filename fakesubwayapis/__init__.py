@@ -119,7 +119,7 @@ class fakesubwayapidocs (fakesubwayrequest) :
                 for ln in self.stations[code]['line'] :
                     
                     line = self.lines[ln]
-                    station_lines.append(line.capitalize())
+                    station_lines.append(line.title())
 
                 count = len(station_lines)
                 
@@ -128,7 +128,7 @@ class fakesubwayapidocs (fakesubwayrequest) :
                 elif count == 1 :
                     name = "%s (%s line)" % (name, station_lines[0])
                 else :
-                    name = "%s (%s lines)" % (name, ",".join(station_lines))
+                    name = "%s (%s lines)" % (name, ", ".join(station_lines))
 
             #
             

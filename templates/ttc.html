@@ -1,0 +1,26 @@
+{% include "inc_head.html" %}
+
+<h2><a href="{{ service.url|escape }}">{{ service.name|escape }}</a></h2>
+
+<div class="example">
+<h3>Example</h3>
+
+<pre>
+GET <a href="{{ host|escape }}/ttc/getinfo/St_Clair_West">{{ host|escape }}/ttc/getinfo/St_Clair_West</a>
+
+&lt;rsp stat="ok"&gt;
+	&lt;station code="St_Clair_West" service="ttc"&gt;
+		&lt;url&gt;<a href="http://www3.ttc.ca/Subway/Stations/St_Clair_West/station.jsp">http://www3.ttc.ca/.../St_Clair_West/station.jsp</a>&lt;/url&gt;
+		&lt;lines&gt;
+			&lt;line code="Y"&gt;Yonge - University - Spadina&lt;/line&gt;
+		&lt;/lines&gt;
+		&lt;name&gt;St Clair West&lt;/name&gt;
+	&lt;/station&gt;
+&lt;/rsp&gt;
+
+</pre>
+</div>
+
+{% include "inc_stations.html" %}
+
+{% include "inc_foot.html" %}
