@@ -6,7 +6,19 @@
 <h3>Example</h3>
 
 <pre>
-...
+GET <a href="{{ host|escape }}/mbta/getinfo/12410">{{ host|escape }}/mbta/getinfo/12410</a>
+
+&lt;rsp stat="ok"&gt;
+	&lt;station code="12410" service="mbta"&gt;
+		&lt;name&gt;JFK/UMass&lt;/name&gt;
+		&lt;url&gt;<a href="http://www.mbta.com/schedules_and_maps/subway/lines/stations/?stopId=12410">http://www.mbta.com/.../stations/?stopId=12410</a>&lt;/url&gt;
+		&lt;lines&gt;
+			&lt;line code="R"&gt;Red&lt;/line&gt;
+		&lt;/lines&gt;
+		&lt;location lat="42.321065" lon="-71.052545"/&gt;
+	&lt;/station&gt;
+&lt;/rsp&gt; 
+
 </pre>
 </div>
 

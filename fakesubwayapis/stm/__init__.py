@@ -2,11 +2,20 @@
 # -*- coding: utf8 -*-
 
 import fakesubwayapis
+import unicodedata
 
 class stm :
 
     def __init__ (self) :
 
+        self.service = {
+            'id' : 'stm',
+            'name' : 'Société de transport de Montréal',
+            'url' : 'http://stm.info/'
+            }
+
+        self.url_template = 'http://www.stm.info/metro/%s.htm'
+        
         self.stations = {
             "m01" : { "name" : "Henri-Bourassa" },
             "m02" : { "name" : "Sauvé" },
@@ -78,39 +87,40 @@ class stm :
             "m68" : { "name" : "Montmorency" },
             }
         
-class docs (fakesubwayapis.fakesubwayapidocs, stm) :
+class docs (stm, fakesubwayapis.fakesubwayapidocs) :
 
     def __init__ (self) :
+
+        stm.__init__(self)        
         fakesubwayapis.fakesubwayapidocs.__init__(self)
-        stm.__init__(self)
         
     def get (self) :
 
-        stations = self.prepare_stations()
-        
-        self.display("stm.html", {'title' : 'stm', 'stations' : stations})
+        self.show_docs()
         return
 
-class api (fakesubwayapis.fakesubwayapi, stm) :
+class station (stm, fakesubwayapis.fakesubwaystation) :
 
     def __init__ (self) :
-        fakesubwayapis.fakesubwayapi.__init__(self)
+
         stm.__init__(self)
+        fakesubwayapis.fakesubwaystation.__init__(self)
+
+    def get (self, code) :
+
+        self.do_redirect(code)
+        return
+
+class api (stm, fakesubwayapis.fakesubwayapi) :
+
+    def __init__ (self) :
+
+        stm.__init__(self)        
+        fakesubwayapis.fakesubwayapi.__init__(self)
         
 class getinfo (api) :
 
     def get (self, code) :
 
-        if not self.stations.has_key(code) :
-            self.api_error(404, 'Station not found')
-            return
-
-        out = {
-            'code' : code,
-            'service' : 'stm',
-            'name' :  { '_content' : self.stations[code]['name'] },
-            'url' : { '_content' : 'http://www.stm.info/metro/%s.htm' % code },
-            }
-        
-        self.api_ok({'station' : out})
+        self.generate_info(code)
         return

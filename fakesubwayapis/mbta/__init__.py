@@ -4,13 +4,21 @@ class mbta :
 
     def __init__ (self) :
 
+        self.service = {
+            'id' : 'mbta',
+            'name' : 'Massachusetts Bay Transportation Authority',
+            'url' : 'http://www.mbta.com/'
+            }
+        
+        self.url_template = 'http://www.mbta.com/schedules_and_maps/subway/lines/stations/?stopId=%s'
+        
         self.lines = {
-            'R' : 'RED',
-            'O' : 'ORANGE',
-            'G' : 'GREEN',
-            'B' : 'BLUE',
-            'S' : 'SILVER',
-            },
+            'R' : 'Red',
+            'O' : 'Orange',
+            'G' : 'Green',
+            'B' : 'Blue',
+            'S' : 'Silver',
+            }
         
 	self.stations = {
 
@@ -18,7 +26,7 @@ class mbta :
 
             4057 : { 'name' : 'Massachusetts Avenue', 'lat' : 42.336378, 'lon' : -71.077232, 'line' : ('S',) },
             
-            6537 : { 'name' : 'Chinatown', 'lat' : 42.352529, 'lon' : -71.062759, 'line' : ('S4',) },
+            6537 : { 'name' : 'Chinatown', 'lat' : 42.352529, 'lon' : -71.062759, 'line' : ('S',) },
             6565 : { 'name' : 'Tufts Medical Center', 'lat' : 42.350019, 'lon' : -71.06357, 'line' : ('S',) },            
             6962 : { 'name' : 'Northern Avenue & Harbor Street', 'lat' : 42.346621, 'lon' : -71.035215, 'line' : ('S',) },
 
@@ -94,10 +102,8 @@ class mbta :
             14166 : { 'name' : 'Ruggles', 'lat' : 42.335742, 'lon' : -71.090437, 'line' : ('O',) },
             14289 : { 'name' : 'Savin Hill', 'lat' : 42.311099, 'lon' : -71.053175, 'line' : ('R',) },
             14352 : { 'name' : 'Shawmut', 'lat' : 42.293712, 'lon' : -71.065912, 'line' : ('R',) },
-            14435 : { 'name' : 'South', 'lat' : 42.352573, 'lon' : -71.055428, 'line' : ('R',) },
-            # 14435 : { 'name' : 'South Station', 'lat' : 42.352573, 'lon' : -71.055428, 'line' : ('S',) }, ***
-            # 14435 : { 'name' : 'South Station', 'lat' : 42.352573, 'lon' : -71.055428, 'line' : ('S',) }, ***
-            14436 : { 'name' : 'South Station', 'lat' : 42.352573, 'lon' : -71.055428, 'line' : ('S4',) },
+            14435 : { 'name' : 'South', 'lat' : 42.352573, 'lon' : -71.055428, 'line' : ('R') },
+            14436 : { 'name' : 'South', 'lat' : 42.352573, 'lon' : -71.055428, 'line' : ('S',) },
             14471 : { 'name' : 'State', 'lat' : 42.359065, 'lon' : -71.057421, 'line' : ('O',) },
             14474 : { 'name' : 'Beachmont', 'lat' : 42.39745, 'lon' : -70.992363, 'line' : ('B',) },
             14477 : { 'name' : 'Stony Brook', 'lat' : 42.317251, 'lon' : -71.104021, 'line' : ('O',) },
@@ -113,21 +119,11 @@ class mbta :
             15417 : { 'name' : 'Airport', 'lat' : 42.372714, 'lon' : -71.03208, 'line' : ('B',) },            
             15481 : { 'name' : 'Ashmont', 'lat' : 42.284219, 'lon' : -71.063229, 'line' : ('R',) },
             15580 : { 'name' : 'Government ', 'lat' : 42.359322, 'lon' : -71.059252, 'line' : ('G',) },
-            # 15580 : { 'name' : 'Government Center', 'lat' : 42.359322, 'lon' : -71.059252, 'line' : ('G',) },  ***
-            # 15580 : { 'name' : 'Government Center', 'lat' : 42.359322, 'lon' : -71.059252, 'line' : ('G',) },  ***
             15582 : { 'name' : 'Haymarket', 'lat' : 42.363222, 'lon' : -71.057922, 'line' : ('G',) },
             15583 : { 'name' : 'North', 'lat' : 42.365551, 'lon' : -71.061251, 'line' : ('G',) },
-            # 15583 : { 'name' : 'North', 'lat' : 42.365551, 'lon' : -71.061251, 'line' : ('G',) }, ***
             15585 : { 'name' : 'Science Park', 'lat' : 42.368009, 'lon' : -71.070673, 'line' : ('G',) },
             15591 : { 'name' : 'Kenmore', 'lat' : 42.348783, 'lon' : -71.095128, 'line' : ('G',) },
-            # 15591 : { 'name' : 'Kenmore', 'lat' : 42.348783, 'lon' : -71.095128, 'line' : ('G',) }, ***
-            # 15591 : { 'name' : 'Kenmore', 'lat' : 42.348783, 'lon' : -71.095128, 'line' : ('G',) }, ***
-            # 15591 : { 'name' : 'Kenmore Station', 'lat' : 42.348783, 'lon' : -71.095128, 'line' : ('G',) }, ***
             15593 : { 'name' : 'Copley', 'lat' : 42.349991, 'lon' : -71.077463, 'line' : ('G',) },
-            # 15593 : { 'name' : 'Copley', 'lat' : 42.349991, 'lon' : -71.077463, 'line' : ('G',) }, ***
-            # 15593 : { 'name' : 'Copley', 'lat' : 42.349991, 'lon' : -71.077463, 'line' : ('G',) }, ***
-            # 15593 : { 'name' : 'Copley Station', 'lat' : 42.349991, 'lon' : -71.077463, 'line' : ('G',) }, ***
-            # 15593 : { 'name' : 'Copley', 'lat' : 42.349991, 'lon' : -71.077463, 'line' : ('G',) }, ***
             15595 : { 'name' : 'Arlington', 'lat' : 42.351847, 'lon' : -71.070817, 'line' : ('G',) },            
             15596 : { 'name' : 'Boylston Street', 'lat' : 42.352337, 'lon' : -71.06461, 'line' : ('G',) },
             15598 : { 'name' : 'Riverside', 'lat' : 42.337394, 'lon' : -71.252327, 'line' : ('G',) },
@@ -168,7 +164,6 @@ class mbta :
             15670 : { 'name' : 'Hynes Convention Center', 'lat' : 42.347953, 'lon' : -71.088148, 'line' : ('G',) },            
             15672 : { 'name' : 'Park Street', 'lat' : 42.356332, 'lon' : -71.062202, 'line' : ('G',) },            
             15675 : { 'name' : 'Lechmere', 'lat' : 42.370774, 'lon' : -71.076593, 'line' : ('G',) },
-            # 15675 : { 'name' : 'Lechmere', 'lat' : 42.370774, 'lon' : -71.076593, 'line' : ('G',) }, ***
             15676 : { 'name' : 'Woodland', 'lat' : 42.333336, 'lon' : -71.24434, 'line' : ('G',) },
             15679 : { 'name' : 'Brookline Hills', 'lat' : 42.331133, 'lon' : -71.127031, 'line' : ('G',) },
             15680 : { 'name' : 'Longwood', 'lat' : 42.341042, 'lon' : -71.110215, 'line' : ('G',) },            
@@ -183,13 +178,10 @@ class mbta :
             24642 : { 'name' : 'Melnea Cass Blvd', 'lat' : 42.332709, 'lon' : -71.081205, 'line' : ('S',) },
             
             25092 : { 'name' : 'World Trade Center', 'lat' : 42.349098, 'lon' : -71.04206, 'line' : ('S',) },
-            # 25092 : { 'name' : 'World Trade Center', 'lat' : 42.349098, 'lon' : -71.04206, 'line' : ('S',) }, ***
             25093 : { 'name' : 'Design Center', 'lat' : 42.344579, 'lon' : -71.034448, 'line' : ('S',) },            
             25100 : { 'name' : 'Silver Line Way', 'lat' : 42.347928, 'lon' : -71.039287, 'line' : ('S',) },            
-            # 25100 : { 'name' : 'Siver Line Way', 'lat' : 42.347928, 'lon' : -71.039287, 'line' : ('S',) }, ***
             25117 : { 'name' : '306 Northern Way', 'lat' : 42.34769, 'lon' : -71.035882, 'line' : ('S',) },
             25133 : { 'name' : 'Courthouse', 'lat' : 42.352724, 'lon' : -71.047514, 'line' : ('S',) },
-            # 25133 : { 'name' : 'Courthouse Station', 'lat' : 42.352724, 'lon' : -71.047514, 'line' : ('S',) }, ***
             25134 : { 'name' : '88 Black Falcon Avenue', 'lat' : 42.344105, 'lon' : -71.02724, 'line' : ('S',) },
             25168 : { 'name' : 'Terminal B Stop 1', 'lat' : 42.363726, 'lon' : -71.019404, 'line' : ('S',) },
             25329 : { 'name' : 'Terminal A', 'lat' : 42.364386, 'lon' : -71.021487, 'line' : ('S',) },
@@ -200,43 +192,41 @@ class mbta :
             90010 : { 'name' : 'Downtown Crossing', 'lat' : 42.355453, 'lon' : -71.060465, 'line' : ('S',) },            
 	}
 
-class docs (fakesubwayapis.fakesubwayapidocs, mbta) :
+class docs (mbta, fakesubwayapis.fakesubwayapidocs) :
 
     def __init__ (self) :
+
+        mbta.__init__(self)        
         fakesubwayapis.fakesubwayapidocs.__init__(self)
-        mbta.__init__(self)
         
     def get (self) :
 
-        stations = self.prepare_stations()
-        
-        self.display("mbta.html", {'title' : 'mbta', 'stations' : stations})
+        self.show_docs()
         return
 
-class api (fakesubwayapis.fakesubwayapi, mbta) :
+class station (mbta, fakesubwayapis.fakesubwaystation) :
 
     def __init__ (self) :
 
-        fakesubwayapis.fakesubwayapi.__init__(self)
         mbta.__init__(self)
+        fakesubwayapis.fakesubwaystation.__init__(self)
+
+    def get (self, code) :
+
+        self.do_redirect(code)
+        return
+
+class api (mbta, fakesubwayapis.fakesubwayapi) :
+
+    def __init__ (self) :
+
+        mbta.__init__(self)
+        fakesubwayapis.fakesubwayapi.__init__(self)
 
 class getinfo (api) :
 
     def get (self, code) :
 
         code = int(code)
-        
-        if not self.stations.has_key(code) :
-            self.api_error(404, 'Station not found')
-            return
-
-        out = {
-            'code' : code,
-            'service' : 'mbta',
-            'location' : { 'lat' : self.stations[code]['lat'], 'lon' : self.stations[code]['lon'] },            
-            'name' :  { '_content' : self.stations[code]['name'] },
-            'url' : { '_content' : 'http://www.mbta.com/schedules_and_maps/subway/lines/stations/?stopId=%s' % code },
-            }
-        
-        self.api_ok({'station' : out})
+        self.generate_info(code)
         return

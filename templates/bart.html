@@ -6,7 +6,7 @@
 <h3>Example</h3>
 
 <pre>
-GET <a href="http://fakesubwayapis.appspot.com/bart/getinfo/16th">http://fakesubwayapis.appspot.com/bart/getinfo/16th</a>
+GET <a href="{{ host|escape }}/bart/getinfo/16th">{{ host|escape }}/bart/getinfo/16th</a>
 
 &lt;rsp stat="ok"&gt;
 	&lt;station code="16th" service="bart"&gt;

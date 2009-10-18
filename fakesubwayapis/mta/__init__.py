@@ -4,6 +4,12 @@ class mta :
 
     def __init__ (self) :
 
+        self.service = {
+            'id' : 'mta',
+            'name' : 'Metropolitain Transportation Authority',
+            'url' : 'http://mta.info'
+            }
+        
 	self.stations = {
 		1 : { "name" : "W 215 St", "lat" : 40.869555, "lon" : -73.915163 },
 		2 : { "name" : "W 207 St", "lat" : 40.865070, "lon" : -73.918415 },
@@ -525,41 +531,44 @@ class mta :
 		1222 : { "name" : "Jersey Avenue", "lat" : 40.71512685201709, "lon" : -74.04909610748291 },
 	}
 
-class docs (fakesubwayapis.fakesubwayapidocs, mta) :
+class docs (mta, fakesubwayapis.fakesubwayapidocs) :
 
     def __init__ (self) :
+
+        mta.__init__(self)        
         fakesubwayapis.fakesubwayapidocs.__init__(self)
-        mta.__init__(self)
         
     def get (self) :
 
-        stations = self.prepare_stations()
-        
-        self.display("mta.html", {'title' : 'mta', 'stations' : stations})
+        self.show_docs()
         return
 
-class api (fakesubwayapis.fakesubwayapi, mta) :
+class station (mta, fakesubwayapis.fakesubwaystation) :
 
     def __init__ (self) :
 
-        fakesubwayapis.fakesubwayapi.__init__(self)
         mta.__init__(self)
+        fakesubwayapis.fakesubwaystation.__init__(self)
+
+    def get (self, code) :
+
+        code = int(code)
+
+        self.show_station(code)
+        return
+    
+class api (mta, fakesubwayapis.fakesubwayapi) :
+
+    def __init__ (self) :
+
+        mta.__init__(self)
+        fakesubwayapis.fakesubwayapi.__init__(self)
 
 class getinfo (api) :
 
     def get (self, code) :
 
-        if not self.stations.has_key(code) :
-            self.api_error(404, 'Station not found')
-            return
+        code = int(code)
 
-        out = {
-            'code' : code,
-            'service' : 'mta',
-            'location' : { 'lat' : self.stations[code]['lat'], 'lon' : self.stations[code]['lon'] },            
-            'name' :  { '_content' : self.stations[code]['name'] },
-            'url' : { '_content' : 'http://www.mta.info/stations/%s/' % code },
-            }
-        
-        self.api_ok({'station' : out})
+        self.generate_info(code)
         return

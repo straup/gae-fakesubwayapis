@@ -6,6 +6,12 @@ class tfl :
 
         # http://www.tfl.gov.uk/tfl/livetravelnews/departureboards/default.asp
 
+        self.service = {
+            'id' : 'tfl',
+            'name' : 'Transport For London',
+            'url' : 'http://tfl.gov.uk'
+            }
+
         self.lines = {
             'B' : 'bakerloo',
             'C' : 'central',
@@ -313,59 +319,62 @@ class tfl :
             "WST" : { "name" : "Warren Street", "line" : ("N", "V") },
                         
             }
+
+    def generate_url (self, code, **more) :
         
-class docs (fakesubwayapis.fakesubwayapidocs, tfl) :
+        if not more.has_key('line_code') :
+            return fakesubwayapis.fakesubwayapi.generate_url(self, code)
+
+        if not self.stations[code].has_key('line') :        
+            return fakesubwayapis.fakesubwayapi.generate_url(self, code)
+
+        if not more['line_code'] in self.lines :
+            return fakesubwayapis.fakesubwayapi.generate_url(self, code)
+
+        line_name = self.lines[ more['line_code'] ]
+
+        return "http://www.tfl.gov.uk/tfl/livetravelnews/departureboards/tube/default.asp?LineCode=%s&StationCode=%s" % (line_name, code.upper())
+        
+class docs (tfl, fakesubwayapis.fakesubwayapidocs) :
 
     def __init__ (self) :
-        fakesubwayapis.fakesubwayapidocs.__init__(self)
+
         tfl.__init__(self)
+        fakesubwayapis.fakesubwayapidocs.__init__(self)
         
     def get (self) :
 
-        compound_ids_only = True
-        stations = self.prepare_stations(compound_ids_only)
-        
-        self.display("tfl.html", {'title' : 'tfl', 'stations' : stations})
+        self.show_docs(generate_compound_ids=True)
         return
 
-
-class api (fakesubwayapis.fakesubwayapi, tfl) :
+class station (tfl, fakesubwayapis.fakesubwaystation) :
 
     def __init__ (self) :
 
-        fakesubwayapis.fakesubwayapi.__init__(self)
         tfl.__init__(self)
-        
-class getinfo (api) :
+        fakesubwayapis.fakesubwaystation.__init__(self)
 
     def get (self, station_code, line_code) :
 
-        code = station_code.upper()
-            
-        if not self.stations.has_key(code) :
-            self.api_error(404, 'Station not found')
+        if line_code :
+            self.do_redirect(station_code, line_code=line_code)
             return
 
-        data = self.stations[code]
+        self.show_station(station_code)
+        return
+    
+class api (tfl, fakesubwayapis.fakesubwayapi) :
 
-        name = data['name']
-        url = None
+    def __init__ (self) :
 
-        if line_code in data['line'] :
+        tfl.__init__(self)
+        fakesubwayapis.fakesubwayapi.__init__(self)
         
-            line_name = self.lines[line_code]
-        
-            url = "http://www.tfl.gov.uk/tfl/livetravelnews/departureboards/tube/default.asp?LineCode=%s&StationCode=%s" % (line_name, station_code.upper())
-        
-        out = {
-            'code' : code,
-            'service' : 'tfl',
-            'name' :  { '_content' : name },
-            'url' : { '_content' : url },
-            }
+class getinfo (api) :
+    
+    def get (self, station_code, line_code) :
 
-        if line_code in data['line'] :
-            out['line'] = line_code
-            
-        self.api_ok({'station' : out})
-        return        
+        code = station_code.upper()
+
+        self.generate_info(code, line_code=line_code)
+        return

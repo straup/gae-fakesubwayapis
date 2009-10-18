@@ -1,0 +1,9 @@
+{% include "inc_head.html" %}
+
+<h2>This is a <a href="{{ host|escape}}/{{ service.id|escape }}">Fake Subway APIS page</a> for the <q>{{ station.name|escape }}</q> station on the <a href="{{ service.url|escape }}">{{ service.name|escape}}</a>.</h2>
+
+<p>It is simply a placeholder until the {{ service.name|escape }} creates a
+  static and linkable webpage for the {{ station.name|escape }} station, at which
+  point this page will issue a permanent redirect.</p>
+
+{% include "inc_foot.html" %}

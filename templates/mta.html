@@ -10,7 +10,7 @@
 <h3>Example</h3>
 
 <pre>
-GET <a href="http://fakesubwayapis.appspot.com/mta/getinfo/67">http://fakesubwayapis.appspot.com/mta/getinfo/67</a>
+GET <a href="{{ host|escape }}/mta/getinfo/67">{{ host|escape }}/mta/getinfo/67</a>
 
 &lt;rsp stat="ok"&gt;
 	&lt;station code="67" service="mta"&gt;

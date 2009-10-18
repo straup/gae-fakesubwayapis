@@ -3,9 +3,17 @@ import fakesubwayapis
 class ukrail :
 
     def __init__ (self) :
+
+        self.service = {
+            'id' : 'ukrail',
+            'name' : 'UK National Rail Service',
+            'url' : 'http://www.nationalrail.co.uk/'
+            }
+
+        self.url_template = 'http://www.nationalrail.co.uk/stations/%s/details.html'
         
         # http://www.nationalrail.co.uk/stations/codes/
-        
+
         self.stations = {
             "ABW" : { "name" : "Abbey Wood" },
             "ABE" : { "name" : "Aber" },
@@ -2548,44 +2556,52 @@ class ukrail :
             "YSM" : { "name" : "Ystrad Mynach" },
             "YSR" : { "name" : "Ystrad Rhondda" },
             }
-        
-class docs (fakesubwayapis.fakesubwayapidocs, ukrail) :
+
+    def generate_url (self, code) :
+        return self.url_template % code.lower()
+
+# api docs
+
+class docs (ukrail, fakesubwayapis.fakesubwayapidocs) :
 
     def __init__ (self) :
 
-        fakesubwayapis.fakesubwayapidocs.__init__(self)
         ukrail.__init__(self)
+        fakesubwayapis.fakesubwayapidocs.__init__(self)
         
     def get (self) :
 
-        stations = self.prepare_stations()
-        
-        self.display("ukrail.html", {'title' : 'ukrail', 'stations' : stations})
+        self.show_docs()
         return
 
-class api (fakesubwayapis.fakesubwayapi, ukrail) :
+# station page
+
+class station (ukrail, fakesubwayapis.fakesubwaystation) :
 
     def __init__ (self) :
 
-        fakesubwayapis.fakesubwayapi.__init__(self)
         ukrail.__init__(self)
+        fakesubwayapis.fakesubwaystation.__init__(self)
+
+    def get (self, code) :
+
+        self.do_redirect(code)
+        return
+
+# api methods
+
+class api (ukrail, fakesubwayapis.fakesubwayapi) :
+
+    def __init__ (self) :
+
+        ukrail.__init__(self)
+        fakesubwayapis.fakesubwayapi.__init__(self)
         
 class getinfo (api) :
-
+    
     def get (self, code) :
 
         code = code.upper()
         
-        if not self.stations.has_key(code) :
-            self.api_error(404, 'Station not found')
-            return
-
-        out = {
-            'code' : code,
-            'service' : 'ukrail',
-            'name' :  { '_content' : self.stations[code]['name'] },
-            'url' : { '_content' : 'http://www.nationalrail.co.uk/stations/%s/details.html' % code.lower() },
-            }
-        
-        self.api_ok({'station' : out})
+        self.generate_info(code)
         return

@@ -6,12 +6,19 @@
 <h3>Example</h3>
 
 <pre>
-GET <a href="http://fakesubwayapis.appspot.com/tfl/getinfo/BST-B">http://fakesubwayapis.appspot.com/tfl/getinfo/BST-B</a>
+GET <a href="{{ host|escape }}/tfl/getinfo/BST-B">{{ host|escape }}/tfl/getinfo/BST-B</a>
 
 &lt;rsp stat="ok"&gt;
 	&lt;station code="BST-B" service="tfl"&gt;
 		&lt;url&gt;<a href="http://www.tfl.gov.uk/tfl/livetravelnews/departureboards/tube/default.asp?LineCode=bakerloo&StationCode=BST">http://www.tfl.gov.uk/...?LineCode=bakerloo&StationCode=BST</a>&lt;/url&gt;
 		&lt;name&gt;Baker Street&lt;/name&gt;
+		&lt;lines&gt;
+			&lt;line code="B"&gt;bakerloo&lt;/line&gt;
+			&lt;line code="O"&gt;circle&lt;/line&gt;
+			&lt;line code="H"&gt;hammersmith&lt;/line&gt;
+			&lt;line code="J"&gt;jubilee&lt;/line&gt;
+			&lt;line code="M"&gt;metropolitain&lt;/line&gt;
+		&lt;/lines&gt;
 	&lt;/station&gt;
 &lt;/rsp&gt;
 </pre>
