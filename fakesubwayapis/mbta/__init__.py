@@ -7,7 +7,9 @@ class mbta :
         self.lines = {
             'R' : 'RED',
             'O' : 'ORANGE',
-            
+            'G' : 'GREEN',
+            'B' : 'BLUE',
+            'S' : 'SILVER',
             },
         
 	self.stations = {
@@ -15,83 +17,217 @@ class mbta :
             # red line
             
             10029 : { 'name' : 'Alewife', 'lat' : 42.395261, 'lon' : -71.142449, 'line' : ('R',) },
-            # http://www.mbta.com/schedules_and_maps/subway/lines/stations/?stopId=11404&lat=42.39662&lng=-71.122527 Davis
-            # http://www.mbta.com/schedules_and_maps/subway/lines/stations/?stopId=13912&lat=42.388353&lng=-71.119159 Porter Square
-            # http://www.mbta.com/schedules_and_maps/subway/lines/stations/?stopId=12084&lat=42.373936&lng=-71.118917 Harvard Square
-            # http://www.mbta.com/schedules_and_maps/subway/lines/stations/?stopId=10919&lat=42.365326&lng=-71.103474 Central Square
-            # http://www.mbta.com/schedules_and_maps/subway/lines/stations/?stopId=12412&lat=42.362427&lng=-71.086058 Kendall Station
-            # http://www.mbta.com/schedules_and_maps/subway/lines/stations/?stopId=11048&lat=42.361279&lng=-71.070493 Charles/MGH
-            # http://www.mbta.com/schedules_and_maps/subway/lines/stations/?stopId=13771&lat=42.356332&lng=-71.062202 Park Street
-            # http://www.mbta.com/schedules_and_maps/subway/lines/stations/?stopId=11473&lat=42.355453&lng=-71.060465 Downtown Crossing
-            # http://www.mbta.com/schedules_and_maps/subway/lines/stations/?stopId=14435&lat=42.352573&lng=-71.055428 South Station
-            # http://www.mbta.com/schedules_and_maps/subway/lines/stations/?stopId=10641&lat=42.342793&lng=-71.057117 Broadway
-            # http://www.mbta.com/schedules_and_maps/subway/lines/stations/?stopId=10062&lat=42.329752&lng=-71.056979 Andrew
-            # http://www.mbta.com/schedules_and_maps/subway/lines/stations/?stopId=12410&lat=42.321065&lng=-71.052545 JFK/UMass
-            # http://www.mbta.com/schedules_and_maps/subway/lines/stations/?stopId=13524&lat=42.274957&lng=-71.029307 North Quincy
-            # http://www.mbta.com/schedules_and_maps/subway/lines/stations/?stopId=15412&lat=42.265972&lng=-71.019721 Wollaston
-            # http://www.mbta.com/schedules_and_maps/subway/lines/stations/?stopId=13981&lat=42.250879&lng=-71.004798 Quincy Street
-            # http://www.mbta.com/schedules_and_maps/subway/lines/stations/?stopId=13946&lat=42.232848&lng=-71.007034 Quincy Adams
-            # http://www.mbta.com/schedules_and_maps/subway/lines/stations/?stopId=10431&lat=42.20855&lng=-71.00085 Braintree
-            # http://www.mbta.com/schedules_and_maps/subway/lines/stations/?stopId=14289&lat=42.311099&lng=-71.053175 Savin Hill
-            # http://www.mbta.com/schedules_and_maps/subway/lines/stations/?stopId=11781&lat=42.299992&lng=-71.061516 Fields Corner
-            # http://www.mbta.com/schedules_and_maps/subway/lines/stations/?stopId=14352&lat=42.293712&lng=-71.065912 Shawmut
-            # http://www.mbta.com/schedules_and_maps/subway/lines/stations/?stopId=15481&lat=42.284219&lng=-71.063229 Ashmont
-            # http://www.mbta.com/schedules_and_maps/subway/lines/stations/?stopId=15659&lat=42.279712&lng=-71.060327 Cedar Grove
-            # http://www.mbta.com/schedules_and_maps/subway/lines/stations/?stopId=15660&lat=42.272253&lng=-71.062453 Butler
-            # http://www.mbta.com/schedules_and_maps/subway/lines/stations/?stopId=15692&lat=42.270093&lng=-71.067612 Milton
-            # http://www.mbta.com/schedules_and_maps/subway/lines/stations/?stopId=15664&lat=42.269965&lng=-71.073249 Central Avenue
-            # http://www.mbta.com/schedules_and_maps/subway/lines/stations/?stopId=15665&lat=42.267772&lng=-71.083025 Valley ROad
-            # http://www.mbta.com/schedules_and_maps/subway/lines/stations/?stopId=15667&lat=42.267622&lng=-71.087436 Capen Street
-            # http://www.mbta.com/schedules_and_maps/subway/lines/stations/?stopId=15668&lat=42.267586&lng=-71.092021 Mattapan
+            10062 : { 'name' : 'Andrew', 'lat' : 42.329752, 'lon' : -71.056979, 'line' : ('R',) },
+            10431 : { 'name' : 'Braintree', 'lat' : 42.20855, 'lon' : -71.00085, 'line' : ('R',) },
+            10641 : { 'name' : 'Broadway', 'lat' : 42.342793, 'lon' : -71.057117, 'line' : ('R',) },
+            10919 : { 'name' : 'Central Square', 'lat' : 42.365326, 'lon' : -71.103474, 'line' : ('R',) },
+            11048 : { 'name' : 'Charles/MGH', 'lat' : 42.361279, 'lon' : -71.070493, 'line' : ('R',) },            
+            11404 : { 'name' : 'Davis', 'lat' : 42.39662, 'lon' : -71.122527, 'line' : ('R',) },
+            11473 : { 'name' : 'Downtown Crossing', 'lat' : 42.355453, 'lon' : -71.060465, 'line' : ('R',) },
+            12084 : { 'name' : 'Harvard Square', 'lat' : 42.373936, 'lon' : -71.118917, 'line' : ('R',) },
+            12410 : { 'name' : 'JFK/UMass', 'lat' : 42.321065, 'lon' : -71.052545, 'line' : ('R',) },
+            12412 : { 'name' : 'Kendall', 'lat' : 42.362427, 'lon' : -71.086058, 'line' : ('R',) },            
+            13524 : { 'name' : 'North Quincy', 'lat' : 42.274957, 'lon' : -71.029307, 'line' : ('R',) },
+            13771 : { 'name' : 'Park', 'lat' : 42.356332, 'lon' : -71.062202, 'line' : ('R',) },            
+            13912 : { 'name' : 'Porter Square', 'lat' : 42.388353, 'lon' : -71.119159, 'line' : ('R',) },
+            13946 : { 'name' : 'Quincy Adams', 'lat' : 42.232848, 'lon' : -71.007034, 'line' : ('R',) },
+            13981 : { 'name' : 'Quincy Street', 'lat' : 42.250879, 'lon' : -71.004798, 'line' : ('R',) },
+            14435 : { 'name' : 'South', 'lat' : 42.352573, 'lon' : -71.055428, 'line' : ('R',) },
+            15412 : { 'name' : 'Wollaston', 'lat' : 42.265972, 'lon' : -71.019721, 'line' : ('R',) },
 
-            # orange line
 
-            # http://www.mbta.com/schedules_and_maps/subway/lines/stations/?stopId=13642&lat=42.436381&lng=-71.071007 Oak Grove
-            # http://www.mbta.com/schedules_and_maps/subway/lines/stations/?stopId=12975&lat=42.426678&lng=-71.074144 Malden Center
-            # http://www.mbta.com/schedules_and_maps/subway/lines/stations/?stopId=15231&lat=42.405202&lng=-71.076969 Wellington
-            # http://www.mbta.com/schedules_and_maps/subway/lines/stations/?stopId=14490&lat=42.383434&lng=-71.077056 Sullivan Square
-            # http://www.mbta.com/schedules_and_maps/subway/lines/stations/?stopId=11258&lat=42.372593&lng=-71.07052 Community College
-            # http://www.mbta.com/schedules_and_maps/subway/lines/stations/?stopId=13610&lat=42.365551&lng=-71.061251 North Station
-            # http://www.mbta.com/schedules_and_maps/subway/lines/stations/?stopId=12091&lat=42.363222&lng=-71.057922 Haymarket
-            # http://www.mbta.com/schedules_and_maps/subway/lines/stations/?stopId=14471&lat=42.359065&lng=-71.057421 State
-            # http://www.mbta.com/schedules_and_maps/subway/lines/stations/?stopId=11471&lat=42.355453&lng=-71.060465 Downtown Crossing
-            # http://www.mbta.com/schedules_and_maps/subway/lines/stations/?stopId=11108&lat=42.352529&lng=-71.062759 Chinatown
-            # http://www.mbta.com/schedules_and_maps/subway/lines/stations/?stopId=13443&lat=42.349504&lng=-71.063877 Tufts Medical Center
-            # http://www.mbta.com/schedules_and_maps/subway/lines/stations/?stopId=10124&lat=42.347314&lng=-71.075724 Back Bay
-            # http://www.mbta.com/schedules_and_maps/subway/lines/stations/?stopId=13073&lat=42.341762&lng=-71.083072 Massachusetts Avenue
-            # http://www.mbta.com/schedules_and_maps/subway/lines/stations/?stopId=14166&lat=42.335742&lng=-71.090437 Ruggles
-            # http://www.mbta.com/schedules_and_maps/subway/lines/stations/?stopId=14153&lat=42.331388&lng=-71.095555 Roxbury Crossing
-            # http://www.mbta.com/schedules_and_maps/subway/lines/stations/?stopId=12395&lat=42.322893&lng=-71.099787 Jackson Square
-            # http://www.mbta.com/schedules_and_maps/subway/lines/stations/?stopId=14477&lat=42.317251&lng=-71.104021 Stony Brook
-            # http://www.mbta.com/schedules_and_maps/subway/lines/stations/?stopId=11952&lat=42.310359&lng=-71.107125 Green Street
-            # http://www.mbta.com/schedules_and_maps/subway/lines/stations/?stopId=11788&lat=42.300023&lng=-71.113377 Forest Hills
 
-            # green line
 
-            # blue line
+            14289 : { 'name' : 'Savin Hill', 'lat' : 42.311099, 'lon' : -71.053175, 'line' : ('R',) },
+            11781 : { 'name' : 'Fields Corner', 'lat' : 42.299992, 'lon' : -71.061516, 'line' : ('R',) },
+            14352 : { 'name' : 'Shawmut', 'lat' : 42.293712, 'lon' : -71.065912, 'line' : ('R',) },
+            15481 : { 'name' : 'Ashmont', 'lat' : 42.284219, 'lon' : -71.063229, 'line' : ('R',) },
+            15659 : { 'name' : 'Cedar Grove', 'lat' : 42.279712, 'lon' : -71.060327, 'line' : ('R',) },
+            15660 : { 'name' : 'Butler', 'lat' : 42.272253, 'lon' : -71.062453, 'line' : ('R',) },
+            15692 : { 'name' : 'Milton', 'lat' : 42.270093, 'lon' : -71.067612, 'line' : ('R',) },
+            15664 : { 'name' : 'Central Avenue', 'lat' : 42.269965, 'lon' : -71.073249, 'line' : ('R',) },
+            15665 : { 'name' : 'Valley ROad', 'lat' : 42.267772, 'lon' : -71.083025, 'line' : ('R',) },
+            15667 : { 'name' : 'Capen Street', 'lat' : 42.267622, 'lon' : -71.087436, 'line' : ('R',) },
+            15668 : { 'name' : 'Mattapan', 'lat' : 42.267586, 'lon' : -71.092021, 'line' : ('R',) },
 
-            # http://www.mbta.com/schedules_and_maps/subway/lines/stations/?stopId=15415&lat=42.413963&lng=-70.990986 Wonderland
-            # http://www.mbta.com/schedules_and_maps/subway/lines/stations/?stopId=11913&lat=42.408389&lng=-70.99256 Revere Beach
-            # http://www.mbta.com/schedules_and_maps/subway/lines/stations/?stopId=14474&lat=42.39745&lng=-70.992363 Beachmont
-            # http://www.mbta.com/schedules_and_maps/subway/lines/stations/?stopId=10077&lat=42.390232&lng=-70.997678 Suffolk Downs
-            # http://www.mbta.com/schedules_and_maps/subway/lines/stations/?stopId=13119&lat=42.386769&lng=-71.004941 Orient Heights
-            # http://www.mbta.com/schedules_and_maps/subway/lines/stations/?stopId=10018&lat=42.379759&lng=-71.022476 Wood Island
-            # http://www.mbta.com/schedules_and_maps/subway/lines/stations/?stopId=15417&lat=42.372714&lng=-71.03208 Airport
-            # http://www.mbta.com/schedules_and_maps/subway/lines/stations/?stopId=13699&lat=42.368343&lng=-71.038422 Maverick
-            # http://www.mbta.com/schedules_and_maps/subway/lines/stations/?stopId=14486&lat=42.359634&lng=-71.051807 Aquarium
-            # http://www.mbta.com/schedules_and_maps/subway/lines/stations/?stopId=10180&lat=42.359065&lng=-71.057421 State
-            # http://www.mbta.com/schedules_and_maps/subway/lines/stations/?stopId=14037&lat=42.359322&lng=-71.059252 Government Center
-            # http://www.mbta.com/schedules_and_maps/subway/lines/stations/?stopId=10409&lat=42.361457&lng=-71.062129 Bowdoin
+            13642 : { 'name' : 'Oak Grove', 'lat' : 42.436381, 'lon' : -71.071007, 'line' : ('O',) },
+            12975 : { 'name' : 'Malden Center', 'lat' : 42.426678, 'lon' : -71.074144, 'line' : ('O',) },
+            15231 : { 'name' : 'Wellington', 'lat' : 42.405202, 'lon' : -71.076969, 'line' : ('O',) },
+            14490 : { 'name' : 'Sullivan Square', 'lat' : 42.383434, 'lon' : -71.077056, 'line' : ('O',) },
+            11258 : { 'name' : 'Community College', 'lat' : 42.372593, 'lon' : -71.07052, 'line' : ('O',) },
+            13610 : { 'name' : 'North Station', 'lat' : 42.365551, 'lon' : -71.061251, 'line' : ('O',) },
+            12091 : { 'name' : 'Haymarket', 'lat' : 42.363222, 'lon' : -71.057922, 'line' : ('O',) },
+            14471 : { 'name' : 'State', 'lat' : 42.359065, 'lon' : -71.057421, 'line' : ('O',) },
+            11471 : { 'name' : 'Downtown Crossing', 'lat' : 42.355453, 'lon' : -71.060465, 'line' : ('O',) },
+            11108 : { 'name' : 'Chinatown', 'lat' : 42.352529, 'lon' : -71.062759, 'line' : ('O',) },
+            13443 : { 'name' : 'Tufts Medical Center', 'lat' : 42.349504, 'lon' : -71.063877, 'line' : ('O',) },
+            10124 : { 'name' : 'Back Bay', 'lat' : 42.347314, 'lon' : -71.075724, 'line' : ('O',) },
+            13073 : { 'name' : 'Massachusetts Avenue', 'lat' : 42.341762, 'lon' : -71.083072, 'line' : ('O',) },
+            14166 : { 'name' : 'Ruggles', 'lat' : 42.335742, 'lon' : -71.090437, 'line' : ('O',) },
+            14153 : { 'name' : 'Roxbury Crossing', 'lat' : 42.331388, 'lon' : -71.095555, 'line' : ('O',) },
+            12395 : { 'name' : 'Jackson Square', 'lat' : 42.322893, 'lon' : -71.099787, 'line' : ('O',) },
+            14477 : { 'name' : 'Stony Brook', 'lat' : 42.317251, 'lon' : -71.104021, 'line' : ('O',) },
+            11952 : { 'name' : 'Green Street', 'lat' : 42.310359, 'lon' : -71.107125, 'line' : ('O',) },
+            11788 : { 'name' : 'Forest Hills', 'lat' : 42.300023, 'lon' : -71.113377, 'line' : ('O',) },
 
-            # silver
+            15675 : { 'name' : 'Lechmere', 'lat' : 42.370774, 'lon' : -71.076593, 'line' : ('',) },
+            15585 : { 'name' : 'Science Park', 'lat' : 42.368009, 'lon' : -71.070673, 'line' : ('',) },
+            15583 : { 'name' : 'North', 'lat' : 42.365551, 'lon' : -71.061251, 'line' : ('',) },
+            15582 : { 'name' : 'Haymarket', 'lat' : 42.363222, 'lon' : -71.057922, 'line' : ('',) },
+            15580 : { 'name' : 'Government ', 'lat' : 42.359322, 'lon' : -71.059252, 'line' : ('',) },
+            15672 : { 'name' : 'Park Street', 'lat' : 42.356332, 'lon' : -71.062202, 'line' : ('',) },
+            15596 : { 'name' : 'Boylston Street', 'lat' : 42.352337, 'lon' : -71.06461, 'line' : ('',) },
+            15595 : { 'name' : 'Arlington', 'lat' : 42.351847, 'lon' : -71.070817, 'line' : ('',) },
+            15593 : { 'name' : 'Copley', 'lat' : 42.349991, 'lon' : -71.077463, 'line' : ('',) },
+            15670 : { 'name' : 'Hynes Convention Center', 'lat' : 42.347953, 'lon' : -71.088148, 'line' : ('',) },
+            15591 : { 'name' : 'Kenmore', 'lat' : 42.348783, 'lon' : -71.095128, 'line' : ('',) },
+            15591 : { 'name' : 'Kenmore', 'lat' : 42.348783, 'lon' : -71.095128, 'line' : ('',) },
+            15591 : { 'name' : 'Kenmore', 'lat' : 42.348783, 'lon' : -71.095128, 'line' : ('',) },
+            15591 : { 'name' : 'Kenmore', 'lat' : 42.348783, 'lon' : -71.095128, 'line' : ('',) },
+            15580 : { 'name' : 'Government Center', 'lat' : 42.359322, 'lon' : -71.059252, 'line' : ('',) },
+            15593 : { 'name' : 'Copley', 'lat' : 42.349991, 'lon' : -71.077463, 'line' : ('',) },
+            15591 : { 'name' : 'Kenmore', 'lat' : 42.348783, 'lon' : -71.095128, 'line' : ('',) },
+            11182 : { 'name' : 'Blandford Street', 'lat' : 42.349126, 'lon' : -71.100235, 'line' : ('',) },
+            10693 : { 'name' : 'Boston University East Station', 'lat' : 42.349569, 'lon' : -71.103866, 'line' : ('',) },
+            10690 : { 'name' : 'Boston University Central Station', 'lat' : 42.34989, 'lon' : -71.106804, 'line' : ('',) },
+            10694 : { 'name' : 'Boston University West Station', 'lat' : 42.350759, 'lon' : -71.113833, 'line' : ('',) },
+            11203 : { 'name' : 'St. Paul Street', 'lat' : 42.350997, 'lon' : -71.115997, 'line' : ('',) },
+            11201 : { 'name' : 'Pleasant Street', 'lat' : 42.351345, 'lon' : -71.118783, 'line' : ('',) },
+            11180 : { 'name' : 'Babcock Street', 'lat' : 42.35169, 'lon' : -71.121547, 'line' : ('',) },
+            11185 : { 'name' : 'Packards Corner', 'lat' : 42.351833, 'lon' : -71.124702, 'line' : ('',) },
+            11194 : { 'name' : 'Harvard Avenue', 'lat' : 42.350118, 'lon' : -71.131197, 'line' : ('',) },
+            11197 : { 'name' : 'Griggs Street/Long Avenue', 'lat' : 42.348542, 'lon' : -71.134551, 'line' : ('',) },
+            11178 : { 'name' : 'Allston Street', 'lat' : 42.348468, 'lon' : -71.137888, 'line' : ('',) },
+            11210 : { 'name' : 'Warren Street', 'lat' : 42.348366, 'lon' : -71.140224, 'line' : ('',) },
+            11212 : { 'name' : 'Washington Street', 'lat' : 42.343886, 'lon' : -71.142593, 'line' : ('',) },
+            11189 : { 'name' : 'Sutherland Street', 'lat' : 42.341483, 'lon' : -71.146162, 'line' : ('',) },
+            11207 : { 'name' : 'Chiswick Road', 'lat' : 42.340839, 'lon' : -71.150459, 'line' : ('',) },
+            11187 : { 'name' : 'Chestnut Hill Avenue', 'lat' : 42.338145, 'lon' : -71.152961, 'line' : ('',) },
+            11202 : { 'name' : 'South Street', 'lat' : 42.339455, 'lon' : -71.157622, 'line' : ('',) },
+            10369 : { 'name' : 'Boston College', 'lat' : 42.339902, 'lon' : -71.166124, 'line' : ('',) },
+            10369 : { 'name' : 'Boston College', 'lat' : 42.339902, 'lon' : -71.166124, 'line' : ('',) },
+            10369 : { 'name' : 'Boston College', 'lat' : 42.339902, 'lon' : -71.166124, 'line' : ('',) },
+            10369 : { 'name' : 'Boston College', 'lat' : 42.339902, 'lon' : -71.166124, 'line' : ('',) },
+            15583 : { 'name' : 'North', 'lat' : 42.365551, 'lon' : -71.061251, 'line' : ('',) },
+            15593 : { 'name' : 'Copley', 'lat' : 42.349991, 'lon' : -71.077463, 'line' : ('',) },
+            15591 : { 'name' : 'Kenmore', 'lat' : 42.348783, 'lon' : -71.095128, 'line' : ('',) },
+            15681 : { 'name' : 'St. Marys Street', 'lat' : 42.345947, 'lon' : -71.107385, 'line' : ('',) },
+            15621 : { 'name' : 'Hawes Street', 'lat' : 42.34487, 'lon' : -71.111129, 'line' : ('',) },
+            15623 : { 'name' : 'Kent Street', 'lat' : 42.344125, 'lon' : -71.113885, 'line' : ('',) },
+            15624 : { 'name' : 'St. Paul Street', 'lat' : 42.343366, 'lon' : -71.116759, 'line' : ('',) },
+            15625 : { 'name' : 'Coolidge Corner', 'lat' : 42.342226, 'lon' : -71.120888, 'line' : ('',) },
+            15627 : { 'name' : 'Summit Avenue', 'lat' : 42.340946, 'lon' : -71.125182, 'line' : ('',) },
+            15629 : { 'name' : 'Brandon Hall', 'lat' : 42.339683, 'lon' : -71.129327, 'line' : ('',) },
+            15683 : { 'name' : 'Fairbanks', 'lat' : 42.339474, 'lon' : -71.131304, 'line' : ('',) },
+            15655 : { 'name' : 'Washington Square', 'lat' : 42.339258, 'lon' : -71.135387, 'line' : ('',) },
+            15633 : { 'name' : 'Tappan Street', 'lat' : 42.338469, 'lon' : -71.138705, 'line' : ('',) },
+            15634 : { 'name' : 'Dean Road', 'lat' : 42.337847, 'lon' : -71.141549, 'line' : ('',) },
+            15636 : { 'name' : 'Englewood Avenue', 'lat' : 42.337049, 'lon' : -71.145357, 'line' : ('',) },
+            15685 : { 'name' : 'Cleveland Circle', 'lat' : 42.336197, 'lon' : -71.149406, 'line' : ('',) },
+            15685 : { 'name' : 'Cleveland Circle', 'lat' : 42.336197, 'lon' : -71.149406, 'line' : ('',) },
+            15685 : { 'name' : 'Cleveland Circle', 'lat' : 42.336197, 'lon' : -71.149406, 'line' : ('',) },
+            15685 : { 'name' : 'Cleveland Circle', 'lat' : 42.336197, 'lon' : -71.149406, 'line' : ('',) },
+            15580 : { 'name' : 'Government Center', 'lat' : 42.359322, 'lon' : -71.059252, 'line' : ('',) },
+            15593 : { 'name' : 'Copley Station', 'lat' : 42.349991, 'lon' : -71.077463, 'line' : ('',) },
+            15591 : { 'name' : 'Kenmore Station', 'lat' : 42.348783, 'lon' : -71.095128, 'line' : ('',) },
+            15617 : { 'name' : 'Fenway Station', 'lat' : 42.345347, 'lon' : -71.104156, 'line' : ('',) },
+            15680 : { 'name' : 'Longwood', 'lat' : 42.341042, 'lon' : -71.110215, 'line' : ('',) },
+            15614 : { 'name' : 'Brookline Village', 'lat' : 42.332002, 'lon' : -71.118129, 'line' : ('',) },
+            15679 : { 'name' : 'Brookline Hills', 'lat' : 42.331133, 'lon' : -71.127031, 'line' : ('',) },
+            15611 : { 'name' : 'Beaconsfield', 'lat' : 42.335805, 'lon' : -71.140849, 'line' : ('',) },
+            15609 : { 'name' : 'Reservoir', 'lat' : 42.334912, 'lon' : -71.149072, 'line' : ('',) },
+            15607 : { 'name' : 'Chestnut Hill', 'lat' : 42.326601, 'lon' : -71.16529, 'line' : ('',) },
+            15605 : { 'name' : 'Newton Center', 'lat' : 42.328354, 'lon' : -71.194444, 'line' : ('',) },
+            15604 : { 'name' : 'Newton Highlands', 'lat' : 42.321539, 'lon' : -71.205966, 'line' : ('',) },
+            15602 : { 'name' : 'Eliot', 'lat' : 42.318744, 'lon' : -71.217023, 'line' : ('',) },
+            15601 : { 'name' : 'Waban', 'lat' : 42.325981, 'lon' : -71.230712, 'line' : ('',) },
+            15676 : { 'name' : 'Woodland', 'lat' : 42.333336, 'lon' : -71.24434, 'line' : ('',) },
+            15598 : { 'name' : 'Riverside', 'lat' : 42.337394, 'lon' : -71.252327, 'line' : ('',) },
+            15598 : { 'name' : 'Riverside', 'lat' : 42.337394, 'lon' : -71.252327, 'line' : ('',) },
+            15598 : { 'name' : 'Riverside', 'lat' : 42.337394, 'lon' : -71.252327, 'line' : ('',) },
+            15598 : { 'name' : 'Riverside', 'lat' : 42.337394, 'lon' : -71.252327, 'line' : ('',) },
+            15675 : { 'name' : 'Lechmere', 'lat' : 42.370774, 'lon' : -71.076593, 'line' : ('',) },
+            15593 : { 'name' : 'Copley', 'lat' : 42.349991, 'lon' : -71.077463, 'line' : ('',) },
+            15639 : { 'name' : 'Prudential', 'lat' : 42.345503, 'lon' : -71.081401, 'line' : ('',) },
+            15640 : { 'name' : 'Symphony', 'lat' : 42.342919, 'lon' : -71.084529, 'line' : ('',) },
+            15642 : { 'name' : 'Northeastern University', 'lat' : 42.340307, 'lon' : -71.088717, 'line' : ('',) },
+            15643 : { 'name' : 'Museum of Fine Arts', 'lat' : 42.337732, 'lon' : -71.095125, 'line' : ('',) },
+            15645 : { 'name' : 'Longwood Medical Area', 'lat' : 42.335898, 'lon' : -71.100052, 'line' : ('',) },
+            15646 : { 'name' : 'Brigham Circle', 'lat' : 42.334268, 'lon' : -71.10437, 'line' : ('',) },
+            15648 : { 'name' : 'Fenwood Street', 'lat' : 42.333722, 'lon' : -71.105682, 'line' : ('',) },
+            15689 : { 'name' : 'Mission Park', 'lat' : 42.333106, 'lon' : -71.109678, 'line' : ('',) },
+            15690 : { 'name' : 'Riverway', 'lat' : 42.331686, 'lon' : -71.112004, 'line' : ('',) },
+            15652 : { 'name' : 'Back of the Hill', 'lat' : 42.32996, 'lon' : -71.111406, 'line' : ('',) },
+            15653 : { 'name' : 'Heath Street', 'lat' : 42.32868, 'lon' : -71.11068, 'line' : ('',) },
+            15653 : { 'name' : 'Heath Street', 'lat' : 42.32868, 'lon' : -71.11068, 'line' : ('',) },
+            15653 : { 'name' : 'Heath Street', 'lat' : 42.32868, 'lon' : -71.11068, 'line' : ('',) },
+            15653 : { 'name' : 'Heath Street', 'lat' : 42.32868, 'lon' : -71.11068, 'line' : ('',) },
+            15415 : { 'name' : 'Wonderland', 'lat' : 42.413963, 'lon' : -70.990986, 'line' : ('',) },
+            11913 : { 'name' : 'Revere Beach', 'lat' : 42.408389, 'lon' : -70.99256, 'line' : ('',) },
+            14474 : { 'name' : 'Beachmont', 'lat' : 42.39745, 'lon' : -70.992363, 'line' : ('',) },
+            10077 : { 'name' : 'Suffolk Downs', 'lat' : 42.390232, 'lon' : -70.997678, 'line' : ('',) },
+            13119 : { 'name' : 'Orient Heights', 'lat' : 42.386769, 'lon' : -71.004941, 'line' : ('',) },
+            10018 : { 'name' : 'Wood Island', 'lat' : 42.379759, 'lon' : -71.022476, 'line' : ('',) },
+            15417 : { 'name' : 'Airport', 'lat' : 42.372714, 'lon' : -71.03208, 'line' : ('',) },
+            13699 : { 'name' : 'Maverick', 'lat' : 42.368343, 'lon' : -71.038422, 'line' : ('',) },
+            14486 : { 'name' : 'Aquarium', 'lat' : 42.359634, 'lon' : -71.051807, 'line' : ('',) },
+            10180 : { 'name' : 'State', 'lat' : 42.359065, 'lon' : -71.057421, 'line' : ('',) },
+            14037 : { 'name' : 'Government Center', 'lat' : 42.359322, 'lon' : -71.059252, 'line' : ('',) },
+            10409 : { 'name' : 'Bowdoin', 'lat' : 42.361457, 'lon' : -71.062129, 'line' : ('',) },
+            10409 : { 'name' : 'Bowdoin', 'lat' : 42.361457, 'lon' : -71.062129, 'line' : ('',) },
+            10409 : { 'name' : 'Bowdoin', 'lat' : 42.361457, 'lon' : -71.062129, 'line' : ('',) },
+            10409 : { 'name' : 'Bowdoin', 'lat' : 42.361457, 'lon' : -71.062129, 'line' : ('',) },
+            10409 : { 'name' : 'Bowdoin', 'lat' : 42.361457, 'lon' : -71.062129, 'line' : ('',) },
+            10409 : { 'name' : 'Bowdoin', 'lat' : 42.361457, 'lon' : -71.062129, 'line' : ('',) },
+            14435 : { 'name' : 'South Station', 'lat' : 42.352573, 'lon' : -71.055428, 'line' : ('',) },
+            25133 : { 'name' : 'Courthouse', 'lat' : 42.352724, 'lon' : -71.047514, 'line' : ('',) },
+            25092 : { 'name' : 'World Trade Center', 'lat' : 42.349098, 'lon' : -71.04206, 'line' : ('',) },
+            25100 : { 'name' : 'Silver Line Way', 'lat' : 42.347928, 'lon' : -71.039287, 'line' : ('',) },
+            25329 : { 'name' : 'Terminal A', 'lat' : 42.364386, 'lon' : -71.021487, 'line' : ('',) },
+            25168 : { 'name' : 'Terminal B Stop 1', 'lat' : 42.363726, 'lon' : -71.019404, 'line' : ('',) },
+            25331 : { 'name' : 'Terminal B Stop 2', 'lat' : 42.364441, 'lon' : -71.01882, 'line' : ('',) },
+            25332 : { 'name' : 'Terminal C', 'lat' : 42.367461, 'lon' : -71.018148, 'line' : ('',) },
+            25333 : { 'name' : 'Terminal E', 'lat' : 42.370242, 'lon' : -71.020467, 'line' : ('',) },
+            25333 : { 'name' : 'Terminal E', 'lat' : 42.370242, 'lon' : -71.020467, 'line' : ('',) },
+            25333 : { 'name' : 'Terminal E', 'lat' : 42.370242, 'lon' : -71.020467, 'line' : ('',) },
+            25333 : { 'name' : 'Terminal E', 'lat' : 42.370242, 'lon' : -71.020467, 'line' : ('',) },
+            14435 : { 'name' : 'South Station', 'lat' : 42.352573, 'lon' : -71.055428, 'line' : ('',) },
+            25133 : { 'name' : 'Courthouse Station', 'lat' : 42.352724, 'lon' : -71.047514, 'line' : ('',) },
+            25092 : { 'name' : 'World Trade Center', 'lat' : 42.349098, 'lon' : -71.04206, 'line' : ('',) },
+            25100 : { 'name' : 'Siver Line Way', 'lat' : 42.347928, 'lon' : -71.039287, 'line' : ('',) },
+            25117 : { 'name' : '306 Northern Way', 'lat' : 42.34769, 'lon' : -71.035882, 'line' : ('',) },
+            6962 : { 'name' : 'Northern Avenue & Harbor Street', 'lat' : 42.346621, 'lon' : -71.035215, 'line' : ('',) },
+            13614 : { 'name' : 'Northern Avenue & Tide Street', 'lat' : 42.345051, 'lon' : -71.031956, 'line' : ('',) },
+            11475 : { 'name' : '21 Dry Dock Avenue', 'lat' : 42.344626, 'lon' : -71.031036, 'line' : ('',) },
+            8190 : { 'name' : '25 Dry Dock Avenue', 'lat' : 42.344681, 'lon' : -71.028456, 'line' : ('',) },
+            25134 : { 'name' : '88 Black Falcon Avenue', 'lat' : 42.344105, 'lon' : -71.02724, 'line' : ('',) },
+            25093 : { 'name' : 'Design Center', 'lat' : 42.344579, 'lon' : -71.034448, 'line' : ('',) },
+            25093 : { 'name' : 'Design Center', 'lat' : 42.344579, 'lon' : -71.034448, 'line' : ('',) },
+            25093 : { 'name' : 'Design Center', 'lat' : 42.344579, 'lon' : -71.034448, 'line' : ('',) },
+            25093 : { 'name' : 'Design Center', 'lat' : 42.344579, 'lon' : -71.034448, 'line' : ('',) },
+            14436 : { 'name' : 'South Station', 'lat' : 42.352573, 'lon' : -71.055428, 'line' : ('',) },
+            6537 : { 'name' : 'Chinatown', 'lat' : 42.352529, 'lon' : -71.062759, 'line' : ('',) },
+            6537 : { 'name' : 'Chinatown', 'lat' : 42.352529, 'lon' : -71.062759, 'line' : ('',) },
+            6537 : { 'name' : 'Chinatown', 'lat' : 42.352529, 'lon' : -71.062759, 'line' : ('',) },
+            6537 : { 'name' : 'Chinatown', 'lat' : 42.352529, 'lon' : -71.062759, 'line' : ('',) },
+            6565 : { 'name' : 'Tufts Medical Center', 'lat' : 42.350019, 'lon' : -71.06357, 'line' : ('',) },
+            14942 : { 'name' : 'Herald Street', 'lat' : 42.346443, 'lon' : -71.064651, 'line' : ('',) },
+            613 : { 'name' : 'East Berkeley St', 'lat' : 42.343845, 'lon' : -71.066041, 'line' : ('',) },
+            15009 : { 'name' : 'Union Park St', 'lat' : 42.34136, 'lon' : -71.06955, 'line' : ('',) },
+            15011 : { 'name' : 'Newton St', 'lat' : 42.338754, 'lon' : -71.073783, 'line' : ('',) },
+            9108 : { 'name' : 'Worcester St', 'lat' : 42.337386, 'lon' : -71.075846, 'line' : ('',) },
+            4057 : { 'name' : 'Massachusetts Ave', 'lat' : 42.336378, 'lon' : -71.077232, 'line' : ('',) },
+            9154 : { 'name' : 'Lenox St', 'lat' : 42.334958, 'lon' : -71.078958, 'line' : ('',) },
+            24642 : { 'name' : 'Melnea Cass Blvd', 'lat' : 42.332709, 'lon' : -71.081205, 'line' : ('',) },
+            11496 : { 'name' : 'Dudley Sq', 'lat' : 42.329379, 'lon' : -71.084266, 'line' : ('',) },
+            11496 : { 'name' : 'Dudley Sq', 'lat' : 42.329379, 'lon' : -71.084266, 'line' : ('',) },
+            11496 : { 'name' : 'Dudley Sq', 'lat' : 42.329379, 'lon' : -71.084266, 'line' : ('',) },
+            11496 : { 'name' : 'Dudley Sq', 'lat' : 42.329379, 'lon' : -71.084266, 'line' : ('',) },
+            90010 : { 'name' : 'Downtown Crossing', 'lat' : 42.355453, 'lon' : -71.060465, 'line' : ('',) },
+            24419 : { 'name' : 'Chinatown', 'lat' : 42.352529, 'lon' : -71.062759, 'line' : ('',) },
 
-            # sl1
 
-            # http://www.mbta.com/schedules_and_maps/subway/lines/stations/?stopId=14435&lat=42.352573&lng=-71.055428 South Station
-            # http://www.mbta.com/schedules_and_maps/subway/lines/stations/?stopId=25133&lat=42.352724&lng=-71.047514 Courthouse
-            # http://www.mbta.com/schedules_and_maps/subway/lines/stations/?stopId=25092&lat=42.349098&lng=-71.04206 World Trade Center
-            # http://www.mbta.com/schedules_and_maps/subway/lines/stations/?stopId=25100&lat=42.347928&lng=-71.039287 Silver Line Way
-            
+
 	}
 
 class docs (fakesubwayapis.fakesubwayapidocs, mbta) :
