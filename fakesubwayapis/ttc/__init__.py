@@ -91,13 +91,6 @@ class ttc :
             'Woodbine' : { 'name' : 'Woodbine', 'line' : ('B',) },
             'York_Mills' : { 'name' : 'York Mills', 'line' : ('Y',) },
             'Yorkdale' : { 'name' : 'Yorkdale', 'line' : ('Y',) },
-
-
-            '' : { 'name' : '', 'line' : ('',) },
-            '' : { 'name' : '', 'line' : ('',) },
-            '' : { 'name' : '', 'line' : ('',) },
-            '' : { 'name' : '', 'line' : ('',) },
-            
 	}
 
 class docs (ttc, fakesubwayapis.fakesubwayapidocs) :
