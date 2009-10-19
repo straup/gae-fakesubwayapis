@@ -3,64 +3,36 @@ Honestly, it what it sounds like.
 It currently only supports a single method (getinfo) for subway systems (that I
 know about) with actual web pages for individual stations.
 
-# Societe de Transport de Montreal
+    * Bay Area Rapid Transit (BART)
 
-GET http://fakesubwayapis.appspot.com/stm/getinfo/m48
+    * Massachusetts Bay Transportation Authority (MBTA)
 
-<rsp stat="ok">
-	<station code="m48" service="stm">
-		<url>http://www.stm.info/metro/m48.htm</url>
-		<name>Villa-Maria</name>
-	</station>
-</rsp>
+    * New York Metropolitain Transportation Authority (MTA)
 
-# Bay Area Rapid Transit System
+    * Société de transport de Montréal (STM)
 
-GET http://fakesubwayapis.appspot.com/bart/getinfo/sfia
+    * Transport For London (TFL)
 
-<rsp stat="ok">
-	<station code="sfia" service="bart">
-		<url>http://www.bart.gov/stations/sfia/</url>
-		<name>San Francisco Int'l Airport</name>
-	</station>
-</rsp>
+    * Toronto Transit Commission (TTC)
 
-# UK National Rail Service
+    * UK National Rail Service
 
-GET http://fakesubwayapis.appspot.com/ukrail/getinfo/ysr
+    * Washington Metropolitain Area Transit Authority (WMATA, incomplete as of
+      this writing)
 
-<rsp stat="ok">
-	<station code="YSR" service="ukrail">
-		<url>http://www.nationalrail.co.uk/stations/ysr/details.html</url>
-		<name>Ystrad Rhondda</name>
-	</station>
-</rsp>
+Each service has an auto-generated "docs" page and there is support for fake
+station web-pages, though the default is to issue a redirect to the
+service-specific pages.
 
-# Transport For London (aka The Tube)
+For example:
 
-GET http://fakesubwayapis.appspot.com/tfl/getinfo/OLD
+	http://fakesubwayapis.appspot.com/bart/ <-- docs 
 
-<rsp stat="ok">
-	<station code="OLD" service="tfl">
-		<url>http://www.tfl.gov.uk/tfl/livetravelnews/departureboards/tube/default.asp?LineCode=northern&StationCode=OLD</url>
-		<name>Old Street</name>
-	</station>
-</rsp>
+	http://fakesubwayapis.appspot.com/bart/getinfo/16th <-- API
 
-GET http://fakesubwayapis.appspot.com/tfl/getinfo/KXX-N
+	http://fakesubwayapis.appspot.com/bart/station/16th <-- redirect
 
-<rsp stat="ok">
-	<station code="KXX-N" service="tfl">
-		<url>http://www.tfl.gov.uk/tfl/livetravelnews/departureboards/tube/default.asp?LineCode=northern&StationCode=KXX</url>
-		<name>King's Cross St. Pancras</name>
-	</station>
-</rsp>
-
-Note the "-TUBELINE_CODE" bit. This isn't necessary unless you want a URL for
-that Tube station. This is a quirk/feature of the TFL website.
-
-The codes are the first letter of the line name with the exception of the Circle
-line whose code is "O".
+	http://fakesubwayapis.appspot.com/mta/station/550 <-- fake web page
 
 # REQUIREMENTS
 
@@ -68,5 +40,10 @@ http://github.com/straup/gae-APIApp
 
 # NERD NOTES
 
-It's probably getting about time to think about abstracting the "getinfo"
-code. That's as far as I've gotten though.
+There's a fair amount of boiler-plate code despite current refactoring
+efforts. It would be nice to think that the only thing necessary to add a new
+service would be a config/description file and have the code magically do the
+right thing.
+
+It seems a bit early for that still but, yes, I am thinking about
+it. Suggestions are welcome.
