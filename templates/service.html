@@ -1,0 +1,17 @@
+{% include "inc_head.html" %}
+
+<h2><a href="{{ service.url|escape }}">{{ service.name|escape }}</a></h2>
+
+<div class="example">
+<h3>Example</h3>
+
+<pre>
+GET <a href="{{ host|escape }}/{{ service.id|escape }}/getinfo/{{ example_code|escape }}">{{ host|escape }}/{{ service.id|escape }}/getinfo/{{ example_code|escape }}</a>
+
+{{ example_xml|escape }}
+</pre>
+</div>
+
+{% include "inc_stations.html" %}
+
+{% include "inc_foot.html" %}
