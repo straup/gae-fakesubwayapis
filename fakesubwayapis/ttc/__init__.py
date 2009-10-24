@@ -93,6 +93,15 @@ class ttc :
             'Yorkdale' : { 'name' : 'Yorkdale', 'line' : ('Y',) },
 	}
 
+class dump(ttc, fakesubwayapis.fakesubwaystation) :
+
+    def get (self) :
+
+        self.response.out.write("stop_id,stop_name,stop_desc,stop_lat,stop_lon,zone_id,fsa_stop_id,fsa_stop_routes<br />")
+        
+        for id, data in self.stations.items() :
+            self.response.out.write("%s,\"%s\",,,,,%s,%s<br />" % (id, data['name'], id.lower(), ";".join(data['line'])))
+
 class docs (ttc, fakesubwayapis.fakesubwayapidocs) :
 
     def __init__ (self) :

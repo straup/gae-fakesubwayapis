@@ -531,6 +531,16 @@ class mta :
 		1222 : { "name" : "Jersey Avenue", "lat" : 40.71512685201709, "lon" : -74.04909610748291 },
 	}
 
+class dump(mta, fakesubwayapis.fakesubwaystation) :
+
+    def get (self) :
+
+        self.response.out.write("stop_id,stop_name,stop_desc,stop_lat,stop_lon,zone_id,fsa_stop_id,fsa_stop_routes<br />")
+
+        for id, data in self.stations.items() :
+            self.response.out.write("%s,\"%s\",,%s,%s,,%s<br />" % (id, data['name'], data['lat'], data['lon'],id))
+
+
 class docs (mta, fakesubwayapis.fakesubwayapidocs) :
 
     def __init__ (self) :

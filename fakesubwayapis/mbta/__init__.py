@@ -192,6 +192,15 @@ class mbta :
             90010 : { 'name' : 'Downtown Crossing', 'lat' : 42.355453, 'lon' : -71.060465, 'line' : ('S',) },            
 	}
 
+class dump(mbta, fakesubwayapis.fakesubwaystation) :
+
+    def get (self) :
+
+        self.response.out.write("stop_id,stop_name,stop_desc,stop_lat,stop_lon,zone_id,fsa_stop_id,fsa_stop_routes<br />")
+
+        for id, data in self.stations.items() :
+            self.response.out.write("%s,%s,,%s,%s,,%s,%s<br />" % (id, data['name'], data['lat'], data['lon'],id,":".join(data['line'])))
+
 class docs (mbta, fakesubwayapis.fakesubwayapidocs) :
 
     def __init__ (self) :

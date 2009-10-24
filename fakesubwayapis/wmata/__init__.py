@@ -1,31 +1,15 @@
 import fakesubwayapis
 
-class wmata :
+class wmata (fakesubwayapis.fakesubwayservice) :
 
     def __init__ (self) :
-        
-        self.service = {
-            'id' : 'wmata',
-            'name' : 'Washington Metropolitain Area Transit Authority',
-            'url' : 'http://www.wmata.com/'
-            }
 
-        self.url_template = 'http://www.wmata.com/rail/station_detail.cfm?station_id=%s'
+        fakesubwayapis.fakesubwayservice.__init__(self, 'wmata')
         
-        self.lines = {
-            'R' : 'red',
-            'O' : 'orange',
-            'G' : 'green',
-            'B' : 'blue',
-            'Y' : 'yellow',
-            }
+    def prepare_station_code (self, code) :
 
-	# http://www.wmata.com/rail/stations.cfm
-        
-	self.stations = {
-            92 : { 'name' : 'Addison Road-Seat Pleasant', 'line' : ('B',) },
-	}
-
+        return int(code)
+                        
 class docs (wmata, fakesubwayapis.fakesubwayapidocs) :
 
     def __init__ (self) :
@@ -37,7 +21,7 @@ class docs (wmata, fakesubwayapis.fakesubwayapidocs) :
 
         self.show_docs()
         return
-
+        
 class station (wmata, fakesubwayapis.fakesubwaystation) :
 
     def __init__ (self) :
@@ -47,9 +31,7 @@ class station (wmata, fakesubwayapis.fakesubwaystation) :
 
     def get (self, code) :
 
-        code = int(code)
-        
-        self.do_redirect(code)
+        self.show_station(code)
         return
     
 class api (wmata, fakesubwayapis.fakesubwayapi) :
@@ -63,7 +45,5 @@ class getinfo (api) :
 
     def get (self, code) :
 
-        code = int(code)
-        
         self.generate_info(code)
         return

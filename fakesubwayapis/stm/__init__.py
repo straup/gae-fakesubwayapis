@@ -86,6 +86,15 @@ class stm :
             "m67" : { "name" : "de la Concorde" },
             "m68" : { "name" : "Montmorency" },
             }
+
+class dump(stm, fakesubwayapis.fakesubwaystation) :
+
+    def get (self) :
+
+        self.response.out.write("stop_id,stop_name,stop_desc,stop_lat,stop_lon,zone_id,fsa_stop_id,fsa_stop_routes<br />")
+
+        for id, data in self.stations.items() :
+            self.response.out.write("%s,\"%s\",,,,,%s<br />" % (id, data['name'], id))
         
 class docs (stm, fakesubwayapis.fakesubwayapidocs) :
 

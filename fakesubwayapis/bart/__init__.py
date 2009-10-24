@@ -58,7 +58,7 @@ class bart :
             "wcrk" : { "name" : "Walnut Creek" },
             "woak" : { "name" : "West Oakland" },
             }
-        
+                                    
 class docs (bart, fakesubwayapis.fakesubwayapidocs) :
 
     def __init__ (self)  :

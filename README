@@ -17,8 +17,7 @@ know about) with actual web pages for individual stations.
 
     * UK National Rail Service
 
-    * Washington Metropolitain Area Transit Authority (WMATA, incomplete as of
-      this writing)
+    * Washington Metropolitain Area Transit Authority (WMATA)
 
 Each service has an auto-generated "docs" page and there is support for fake
 station web-pages, though the default is to issue a redirect to the
@@ -36,7 +35,34 @@ For example:
 
 # REQUIREMENTS
 
-http://github.com/straup/gae-APIApp
+* A valid GAE account and a recent version of the GAE SDK for Python (>= 1.2.3)
+  which can be downloaded from:
+
+  http://code.google.com/appengine/downloads.html
+
+There are two other dependencies which are not included as part of the package
+itself. They are: 
+
+* gae-APIApp
+
+  http://github.com/straup/gae-APIApp/
+
+* gae-fakesubwayapis-data
+
+  http://github.com/straup/gae-fakesubwayapis-data/
+
+They will need to be installed as follows:
+
+ me @ localhost in /home/me/www/gae-fakesubwayapis
+ 101 ->ls -al 
+ total 104
+ drwxr-xr-x  21 asc   staff   714 Sep  7 18:20 .
+ drwxr-xr-x  14 asc   staff   476 Aug 20 07:54 ..
+ drwxr-xr-x  12 asc   staff   408 Sep  7 18:21 .git
+ -rw-r--r--   1 asc   staff    15 May 20 09:06 .gitignore
+ lrwxr-xr-x   1 root  staff    39 Jul  2 23:48 APIApp -> /home/me/python/gae-APIApp/APIApp
+ lrwxr-xr-x   1 root  staff    45 Jul  2 23:48 data -> /home/me/python/gae-fakesubwayapis-data/data
+ ...
 
 # NERD NOTES
 
@@ -46,8 +72,10 @@ service would be a config/description file and have the code magically do the
 right thing.
 
 It seems a bit early for that still but, yes, I am thinking about
-it. Suggestions are welcome.
+it. Suggestions are welcome.∂
 
 # SEE ALSO
 
 http://www.aaronland.info/weblog/2009/09/18/fivethings/#fakesubwayapis
+
+http://code.flickr.com/blog/2009/10/19/small-bridges-to-proximate-spaces/
