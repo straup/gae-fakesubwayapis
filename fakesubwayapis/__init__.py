@@ -18,7 +18,7 @@ class fakesubwaycache :
 
     def __init__ (self) :
 
-        self.prefix = 'fakesubwayapis2009102'
+        self.prefix = 'fakesubwayapis20091025'
 
     def prepare_key (self, key) :
         return "%s_%s" % (self.prefix, key)
@@ -82,7 +82,7 @@ class fakesubwaydata (fakesubwaycache) :
             data = self.read_data(source)
 
         if not data :
-            logging.error("failed to load any '%s' data for '%s'" % (source, self.id))
+            logging.info("failed to load any '%s' data for '%s'" % (source, self.id))
             return None
         
         self.set_cache(cache_key, data)
@@ -92,6 +92,10 @@ class fakesubwaydata (fakesubwaycache) :
 
         path = self.generate_data_path(source)
 
+        if not os.path.exists(path) :
+            logging.warning("%s does not exist, skipping" % path)
+            return None
+            
         try :
             reader = csv.DictReader(open(path))
         except Exception, e :
@@ -144,7 +148,11 @@ class fakesubwaydata (fakesubwaycache) :
     
     def format_station (self, row) :
 
-        uid = row['fsa_stop_id']
+        if row.has_key('fsa_stop_id') and row['fsa_stop_id'] :
+            uid = row['fsa_stop_id']
+        else :
+            uid = row['stop_id']
+            
         name = row['stop_name']
         
         data = { 'name' : name }
@@ -162,6 +170,7 @@ class fakesubwaydata (fakesubwaycache) :
         return (uid, data)
 
     def generate_data_path (self, file) :
+
         app_root = os.path.dirname(os.path.dirname(__file__))
         data_root = os.path.join(app_root, 'data', self.id)
 
@@ -222,6 +231,7 @@ class fakesubwayservice (fakesubwaydata) :
                 code = int(code)
             else :
                 pass
+
         except Exception, e :
             logging.error("failed to convert code '%s' with template %s: %s" % (code, self.service['id_template'], e))
 
