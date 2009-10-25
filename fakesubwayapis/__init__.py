@@ -431,7 +431,7 @@ class fakesubwaystation (fakesubwayrequest) :
         template_values = {
             'code' : station['code'],
             'service' : self.service,
-            'station' : station['name'],
+            'station' : station,
             'title' : title
         }
         
