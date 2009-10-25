@@ -130,6 +130,7 @@ class fakesubwaydata (fakesubwaycache) :
             'name' : data['agency_name'],
             'url' : data['agency_url'],
             'url_template' : data['fsa_url_template'],
+            'id_template' : data['fsa_id_template'],            
             }
 
     def read_routes_data (self, reader) :
@@ -178,26 +179,58 @@ class fakesubwayservice (fakesubwaydata) :
         fakesubwaydata.__init__(self)
         
         self.id = id
-        
-        self.stations = self.load_data('stops')
-        self.service = self.load_data('agency')
-        self.lines = self.load_data('routes')
 
+        # note: the order in which these are called
+        # actually matters ...
+        
+        self.service = self.load_data('agency')
+        self.lines = self.load_data('routes')        
+        self.stations = self.load_data('stops')
+
+    def fetch_station (self, code, **more) :
+
+        code = self.prepare_station_code(code)
+
+        if not self.stations.has_key(code) :
+            return None
+
+        station = self.stations[code]
+
+        if more.has_key('line_code') and more['line_code'] :
+
+            if not more['line_code'] in station['line'] :
+                return None
+
+        station['code'] = code
+        station['url'] = self.generate_station_url(code, **more)
+        
+        return station
+            
     def prepare_station_code (self, code) :
 
-        if not code:
-            logging.error("invalid station code!")
-            return ''
-        
-        if type(code) == types.IntType :
+        if not self.service.has_key('id_template') :
             return code
-        
-        if re.match('^\d+$', code) :
-            return int(code)
+
+        try :
+            if self.service['id_template'] == 'upper' :
+                code = code.upper()
+            elif self.service['id_template'] == 'lower' :
+                code = code.lower()
+            elif self.service['id_template'] == 'title' :
+                code = code.title()                
+            elif self.service['id_template'] == 'number' :            
+                code = int(code)
+            else :
+                pass
+        except Exception, e :
+            logging.error("failed to convert code '%s' with template %s: %s" % (code, self.service['id_template'], e))
 
         return code
 
     def generate_station_url (self, code, **more) :
+
+        # Do not call fetch_station here unless you're
+        # in the mood for an infinite loop. I'm just sayin'
 
         code = self.prepare_station_code(code)
         
@@ -208,27 +241,30 @@ class fakesubwayservice (fakesubwaydata) :
     
     def prepare_api_output (self, code, **more) :
 
-        code = self.prepare_station_code(code)
+        station = self.fetch_station(code, **more)
 
+        if not station :
+            return None
+        
         out = {
-            'code' : code,
+            'code' : station['code'],
             'service' : self.service['id'],
-            'name' :  { '_content' : self.stations[code]['name'] },
-            'url' : { '_content' : self.generate_station_url(code, **more) },
+            'name' :  { '_content' : station['name'] },
+            'url' : { '_content' : station['url'] },
             }
 
-        if self.stations[code].has_key('lat') and self.stations[code].has_key('lon'):
+        if station.has_key('lat') and station.has_key('lon'):
 
             out['location'] = {
-                'lat' : self.stations[code]['lat'],
-                'lon' : self.stations[code]['lon']
+                'lat' : station['lat'],
+                'lon' : station['lon']
                 }
             
-        if self.stations[code].has_key('line') :
+        if station.has_key('line') :
             out['lines'] = {}
             out['lines']['line'] = []
 
-            for line_code in self.stations[code]['line'] :
+            for line_code in station['line'] :
 
                 out['lines']['line'].append({
                     'code' : line_code,
@@ -263,15 +299,13 @@ class fakesubwayapi (fakesubwayrequest, APIApp) :
         APIApp.__init__(self, 'xml')
         
     def generate_info (self, code, **more) :
-
-        code = self.prepare_station_code(code)
         
-        if not self.stations.has_key(code) :
+        out = self.prepare_api_output(code, **more)
+
+        if not out :
             self.api_error(404, 'Station not found')            
             return None
-
-        out = self.prepare_api_output(code, **more)
-        
+            
         self.api_ok({'station' : out})
         return
 
@@ -339,15 +373,22 @@ class fakesubwayapidocs (fakesubwayrequest) :
                     
         return prepared
 
-    def show_docs (self) :
+    def show_docs (self, **args) :
 
-        stations = self.prepare_stations()
+        stations = self.prepare_stations(**args)
         offset = random.randrange(0, len(stations))
 
         api = APIApp()
         
         example_code = stations[offset][0]
-        example_rsp = self.prepare_api_output(example_code)
+
+        if args.has_key('generate_compound_ids') and args['generate_compound_ids'] == True :
+            (station_code, line_code) = example_code.split("-")
+            example_rsp = self.prepare_api_output(station_code, line_code=line_code)
+
+        else :
+            example_rsp = self.prepare_api_output(example_code)
+            
         example_xml = api.serialize_xml('rsp', example_rsp)
         
         title = "%s (%s)" % (self.service['id'].upper(), self.service['name'])        
@@ -369,18 +410,18 @@ class fakesubwaystation (fakesubwayrequest) :
 
     def show_station (self, code) :
 
-        code = self.prepare_station_code(code)
+        station = self.fetch_station(code)
         
-        if not self.stations.has_key(code) :
+        if not station :
             self.error(404)
             return
 
-        title = "%s (%s)" % (self.stations[code]['name'], self.service['name'])
-        
+        title = "%s (%s)" % (station['name'], self.service['name'])
+
         template_values = {
-            'code' : code,
+            'code' : station['code'],
             'service' : self.service,
-            'station' : self.stations[code],
+            'station' : station['name'],
             'title' : title
         }
         
