@@ -6,7 +6,6 @@ from google.appengine.ext import webapp
 import fakesubwayapis
 
 import fakesubwayapis.boilerplate
-import fakesubwayapis.ttc
 import fakesubwayapis.tfl
 
 if __name__ == '__main__':
@@ -26,18 +25,17 @@ if __name__ == '__main__':
     (r'/(mta)/station/([a-z0-9]+)/?', fakesubwayapis.boilerplate.station),
     (r'/(mta)/?', fakesubwayapis.boilerplate.docs),
 
-    (r'/(stm)/getinfo/(m\d{2})/?', fakesubwayapis.boilerplate.getinfo),
-    (r'/(stm)/station/(m\d{2})/?', fakesubwayapis.boilerplate.station),    
+    (r'/(stm)/getinfo/((?:m|M)\d{2})/?', fakesubwayapis.boilerplate.getinfo),
+    (r'/(stm)/station/((?:m|M)\d{2})/?', fakesubwayapis.boilerplate.station),    
     (r'/(stm)/?', fakesubwayapis.boilerplate.docs),    
 
-    (r'/tfl/dump/?', fakesubwayapis.tfl.dump),
     (r'/tfl/getinfo/(\w+)(?:-(\w))?/?', fakesubwayapis.tfl.getinfo),
     (r'/tfl/station/(\w+)(?:-(\w))?/?', fakesubwayapis.tfl.station),
     (r'/tfl/?', fakesubwayapis.tfl.docs), 
 
-    (r'/ttc/getinfo/(\w+)/?', fakesubwayapis.ttc.getinfo),
-    (r'/ttc/station/(\w+)/?', fakesubwayapis.ttc.station),
-    (r'/ttc/?', fakesubwayapis.ttc.docs), 
+    (r'/(ttc)/getinfo/(\w+)/?', fakesubwayapis.boilerplate.getinfo),
+    (r'/(ttc)/station/(\w+)/?', fakesubwayapis.boilerplate.station),
+    (r'/(ttc)/?', fakesubwayapis.boilerplate.docs), 
 
     (r'/(ukrail)/getinfo/(\w{3})/?', fakesubwayapis.boilerplate.getinfo),
     (r'/(ukrail)/station/(\w{3})/?', fakesubwayapis.boilerplate.station),    
