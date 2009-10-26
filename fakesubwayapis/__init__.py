@@ -18,7 +18,7 @@ class fakesubwaycache :
 
     def __init__ (self) :
 
-        self.prefix = 'fakesubwayapis20091025'
+        self.prefix = 'fakesubwayapis20091026'
 
     def prepare_key (self, key) :
         return "%s_%s" % (self.prefix, key)
@@ -70,7 +70,7 @@ class fakesubwaydata (fakesubwaycache) :
 
         fakesubwaycache.__init__(self)
 
-    def load_data (self, source, force=True) :
+    def load_data (self, source, force=False) :
 
         cache_key = "%s_%s" % (self.id, source)
         data = None
@@ -127,16 +127,24 @@ class fakesubwaydata (fakesubwaycache) :
     
     def read_agency_data (self, reader) :
 
-        data = reader.next()
+        row = reader.next()
 
-        return {
+        data = {
             'id' : self.id,
-            'name' : data['agency_name'],
-            'url' : data['agency_url'],
-            'url_template' : data['fsa_url_template'],
-            'id_template' : data['fsa_id_template'],            
+            'name' : row['agency_name'],
+            'url' : row['agency_url'],
+            'url_template' : row['fsa_url_template'],
+            'id_template' : row['fsa_id_template'],            
             }
 
+        if row.has_key('fsa_url_template') :
+            data['url_template'] = row['fsa_url_template']
+
+        if row.has_key('fsa_id_template') :
+            data['id_template'] = row['fsa_id_template']
+
+        return data
+    
     def read_routes_data (self, reader) :
 
         routes = {}
