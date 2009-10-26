@@ -399,7 +399,7 @@ class fakesubwayapidocs (fakesubwayrequest) :
         else :
             example_rsp = self.prepare_api_output(example_code)
             
-        example_xml = api.serialize_xml('rsp', example_rsp)
+        example_xml = api.serialize_xml('rsp', {'stat' : 'ok', 'station' : example_rsp}, True)
         
         title = "%s (%s)" % (self.service['id'].upper(), self.service['name'])        
         template = "%s.html" % self.service['id']
