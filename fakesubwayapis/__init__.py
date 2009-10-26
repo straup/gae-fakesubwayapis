@@ -133,8 +133,6 @@ class fakesubwaydata (fakesubwaycache) :
             'id' : self.id,
             'name' : row['agency_name'],
             'url' : row['agency_url'],
-            'url_template' : row['fsa_url_template'],
-            'id_template' : row['fsa_id_template'],            
             }
 
         if row.has_key('fsa_url_template') :
