@@ -30,6 +30,11 @@ class station (boilerplate, fakesubwayapis.fakesubwaystation) :
     def get (self, service_id, code) :
 
         self.initialize_service_id(service_id)
+
+        if self.service['url_template'] != '' :
+            self.do_redirect(code)
+            return
+        
         self.show_station(code)
         return
     

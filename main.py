@@ -17,6 +17,10 @@ if __name__ == '__main__':
     (r'/(bart)/station/([a-z0-9]+)/?', fakesubwayapis.boilerplate.station),    
     (r'/(bart)/?', fakesubwayapis.boilerplate.docs),    
 
+    (r'/(gvb)/getinfo/([a-z0-9]+)/?', fakesubwayapis.boilerplate.getinfo),
+    (r'/(gvb)/station/([a-z0-9]+)/?', fakesubwayapis.boilerplate.station),    
+    (r'/(gvb)/?', fakesubwayapis.boilerplate.docs),    
+
     (r'/(mbta)/getinfo/(\d+)/?', fakesubwayapis.boilerplate.getinfo),
     (r'/(mbta)/station/(\d+)/?', fakesubwayapis.boilerplate.station),    
     (r'/(mbta)/?', fakesubwayapis.boilerplate.docs),    
@@ -29,6 +33,8 @@ if __name__ == '__main__':
     (r'/(stm)/station/((?:m|M)\d{2})/?', fakesubwayapis.boilerplate.station),    
     (r'/(stm)/?', fakesubwayapis.boilerplate.docs),    
 
+    # Hey look! This gets its very own package!!
+    
     (r'/tfl/getinfo/(\w+)(?:-(\w))?/?', fakesubwayapis.tfl.getinfo),
     (r'/tfl/station/(\w+)(?:-(\w))?/?', fakesubwayapis.tfl.station),
     (r'/tfl/?', fakesubwayapis.tfl.docs), 
